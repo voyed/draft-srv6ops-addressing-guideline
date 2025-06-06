@@ -333,6 +333,10 @@ Legend:  WP1, WP2 = West‑region provider routers EP1 = East‑region provide
      • BGP Router-ID = 0.0.10.19
      • IS-IS System-ID (48-bit alt) = 0000.0A13.0000
 
+ Note: Mismatches between locator0, loopback, and router-ID indicate
+   configuration typos and aid in audits.
+
+
 # Security Considerations
 
 TODO Security
