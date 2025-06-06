@@ -295,6 +295,20 @@ Legend:  WP1, WP2 = West‑region provider routers EP1 = East‑region provide
    packet is caught by a default‑drop rule or it is outside the /32
    admitted by the core.
 
+# Other Operational Considerations
+
+   In an IPv6‑only backbone the control‑plane still needs several legacy
+   32‑bit identifiers—IS‑IS NET‑ID, BGP router‑ID, IS‑IS System‑ID—that
+   were traditionally filled with an IPv4 loopback.  Deriving these
+   values **directly from the hierarchical locator0** eliminates manual
+   spreadsheets and guarantees internal consistency.  The examples below
+   use the *medium‑site* case from Section 5.1.2:
+
+     • Region‑ID 0x05, Flex‑Algo 0
+     • Set 0x0A10, Node 0x13B
+     • locator0 → **fd00:0500:0a13::/48**
+     • L2 summary → **fd00:0500:0a00::/39**
+
 # Security Considerations
 
 TODO Security
