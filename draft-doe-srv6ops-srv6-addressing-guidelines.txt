@@ -13,23 +13,25 @@ Expires: 8 December 2025
 
 Abstract
 
-   TODO Abstract
+   Testing
 
 About This Document
 
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at
-   https://example.com/LATEST.  Status information for this document may
-   be found at https://datatracker.ietf.org/doc/draft-doe-srv6ops-srv6-
-   addressing-guidelines/.
+   https://voyed.github.io/draft-srv6ops-addressing-guideline/draft-doe-
+   srv6ops-srv6-addressing-guidelines.html.  Status information for this
+   document may be found at https://datatracker.ietf.org/doc/draft-doe-
+   srv6ops-srv6-addressing-guidelines/.
 
-   Discussion of this document takes place on the WG Working Group
-   mailing list (mailto:WG@example.com), which is archived at
-   https://example.com/WG.
+   Discussion of this document takes place on the SRv6 Operations
+   Working Group mailing list (mailto:srv6ops@ietf.org), which is
+   archived at https://mailarchive.ietf.org/arch/browse/srv6ops/.
+   Subscribe at https://www.ietf.org/mailman/listinfo/srv6ops/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/USER/REPO.
+   https://github.com/voyed/draft-srv6ops-addressing-guideline.
 
 Status of This Memo
 
