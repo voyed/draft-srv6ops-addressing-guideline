@@ -8,7 +8,7 @@ Intended status: Informational                               6 June 2025
 Expires: 8 December 2025
 
 
-                           TODO - Your title
+                       SRv6 Addressing Guidelines
           draft-doe-srv6ops-srv6-addressing-guidelines-latest
 
 Abstract
