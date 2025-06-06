@@ -13,7 +13,16 @@ Expires: 8 December 2025
 
 Abstract
 
-   Testing
+   This document provides operational guidelines for designing Segment
+   Routing over IPv6 (SRv6) addressing plans in
+   Internet-service-provider backbones of up to 50 000 nodes.  It
+   specifies a compressed Segment Identifier (C-SID) locator structure
+   (F3216) that encodes Flex-Algo, Region-ID, Site-ID and Node-ID inside
+   a fixed /48 locator while leaving space for Local and Global C-SIDs.
+   An “ultra-scale” profile (~300 000 nodes) using End.LBS locator-block
+   swap is also defined.  The aim is to accelerate brown-field SRv6
+   migrations by offering deterministic field carving, summarisation
+   rules and actionable operational guidance.
 
 About This Document
 
@@ -76,7 +85,31 @@ Table of Contents
 
 1.  Introduction
 
-   TODO Introduction
+   IPv6 offers a vast 128-bit space, allowing operators to build
+   *hierarchical address plans* that align with their physical and
+   operational topology.  When each byte has a clear meaning—Domain-ID,
+   Region, Flex-Algo, Site-Set, Node—summaries fall naturally at region
+   borders and troubleshooting becomes visual.
+
+   A well-designed SRv6 addressing plan underpins summarisation, fast
+   convergence, traffic-engineering flexibility and security filtering.
+   For operators migrating from legacy MPLS or flat IPv6 (_brown-field_
+   environments), renumbering entire domains is rarely feasible.  The
+   scheme described here overlays gracefully on top of existing
+   allocations: individual domain and regions or sites can migrate
+   incrementally without a network-wide flag-day.
+
+   Using *Unique Local Address (ULA)* space keeps infrastructure SIDs
+   off the public Internet, limiting the blast-radius of route leaks or
+   spoofing.  A Global-Unicast scheme is possible but demands airtight
+   RPKI and strict ingress filters; it is therefore _NOT RECOMMENDED_
+   unless strong business drivers outweigh the risk. _RFC 9602_
+   specifies _5F00::/16_ for operators willing to deploy new strict edge
+   ACLs and ROA is also a viable option.
+
+   The *C-SID* paradigm compresses 16-bit Segment Identifiers inside a
+   /48 locator—balancing header overhead with FIB scale while allowing
+   deterministic summarisation.
 
 2.  Conventions and Definitions
 
