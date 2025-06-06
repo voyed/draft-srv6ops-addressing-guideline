@@ -1,6 +1,6 @@
 ---
-title: "TODO - Your title"
-abbrev: "TODO - Abbreviation"
+title: "SRv6 Addressing Guidelines"
+abbrev: "SRv6 Addressing Partitions"
 category: info
 
 docname: draft-doe-srv6ops-srv6-addressing-guidelines-latest
@@ -12,9 +12,10 @@ v: 3
 area: "Operations and Management"
 workgroup: "SRv6 Operations"
 keyword:
- - next generation
- - unicorn
- - sparkling distributed ledger
+ - SRv6 Addressing
+ - IPv6 Partition
+ - Guidelines
+ - SRv6 Best practice Deployment
 venue:
   group: "SRv6 Operations"
   type: "Working Group"
