@@ -309,6 +309,30 @@ Legend:  WP1, WP2 = West‑region provider routers EP1 = East‑region provide
      • locator0 → **fd00:0500:0a13::/48**
      • L2 summary → **fd00:0500:0a00::/39**
 
+## Loopback Address and NET-ID/Router-ID Derivation
+
+   An IPv6-only backbone still requires legacy 32-bit identifiers for IS-IS
+   NET-ID and BGP router-ID. Deriving these directly from the hierarchical
+   locator eliminates manual spreadsheets and guarantees consistency.
+
+   Example (Medium Site from Section 5.1.2):
+     • Region-ID = 0x05, Flex-Algo = 0x00
+     • SS = 0x0A, Node-ID = 0x13B (hex)
+     • locator0 = fd00:0500:0A13::/48
+     • L1 summary = fd00:0500:0A00::/39
+
+   Loopback:
+     • Rule: Loopback = locator0 + ::1/128 from locator0.
+     • Example: fd00:0500:0A13::1/128
+     • Because this resides inside the /48 advertised by IS-IS, no additional
+       loopback prefix is needed (reduces FIB noise)
+
+   Router-ID (BGP & IS-IS):
+     • Method: Use lower 32 bits of loopback, rendered in dotted-decimal.
+     • Loopback low-32 bits = 0x00000A13 → 0.0.10.19
+     • BGP Router-ID = 0.0.10.19
+     • IS-IS System-ID (48-bit alt) = 0000.0A13.0000
+
 # Security Considerations
 
 TODO Security
