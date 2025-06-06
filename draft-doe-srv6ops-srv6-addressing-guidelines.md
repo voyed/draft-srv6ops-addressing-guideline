@@ -156,6 +156,31 @@ Bits 0‑7 8‑15 16‑23 24‑31 32‑39 40‑47   (host part)
    to `0x00`.  The byte‑aligned masks still summarise cleanly, and all
    downstream fields remain valid.
 
+## Locator Structure for RFC 9602 (5F00::/16-model)
+
+   Under *5F00::/16*, the first 16 bits are fixed.  The locator therefore
+   pushes the hierarchy one half‑byte to the right:
+
+```
+Nibbles (4 bits)                      host part
+ 0   1   2     3       4      5      6‑15
++----+----+-----+------+-------+----+----------------+
+| 5F | 00 |  D  |  R  |  FA   | SS |  NN  |  host64  |
++----+----+-----+------+-------+----+----------------+
+Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
+```
+
+   * D  (Domain‑ID) – 4 bits → up to **15 domains** (0x1‑0xF)
+   * R  (Region‑ID) – 4 bits → **15 regions** per domain (0x1‑0xF)
+   * FA (Flex‑Algo) – full byte (24‑31)
+   * SS / NN – identical meaning as in Section 4.1
+
+   Because the first two bytes are locked (*5F00*), Domain and Region
+   live in the third byte.  Flex‑Algo retains a full byte so existing
+   deployments need no change.  ISPs can subdivide further—for example
+   using the lower nibble of Flex‑Algo as a sub‑region key—while keeping
+   summaries on nibble boundaries.
+
 # Security Considerations
 
 TODO Security
