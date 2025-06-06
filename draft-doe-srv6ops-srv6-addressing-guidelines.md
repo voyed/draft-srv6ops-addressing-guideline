@@ -117,7 +117,44 @@ informative:
    * *G5: – Seamless Domain Stitching* End.LBS swaps blocks without SRH
    growth.
 
+# CSID Address‑Encoding Framework (F3216)
 
+   This section converts theory into byte boundaries, showing exactly
+   **how** IPv6 bit‑richness is partitioned into a multi‑level hierarchy
+   (Global‑ID → Region → Flex‑Algo → Site‑Set → Node).
+
+   The 128‑bit SRv6 locator is split into a 64‑bit *network* part and a
+   64‑bit *host* part.  The network part encodes Domain‑ID, Region‑ID,
+   Flex‑Algo, Set and Node‑ID in byte‑aligned fields.
+
+## Locator Structure and Field Encoding (ULA-model)
+
+   The diagram below shows, byte‑by‑byte, how an SRv6 locator encodes the
+   hierarchy described in Section 4.  Reading the hexadecimal address
+   reveals the Domain, Region, Flex‑Algo, Set and Node values without a
+   lookup table.
+
+```
+Byte  0    1    2    3    4    5       6‑15
+Bits 0‑7 8‑15 16‑23 24‑31 32‑39 40‑47   (host part)
+     +---+---+----+----+----+----+----------------+
+     |fd | D |Reg | FA | SS | NN |    host64      |
+     +---+---+----+----+----+----+----------------+
+```
+
+   Field | Bits | Purpose
+   ------|------|---------------------------------------------
+   fd    | 0‑7  | ULA prefix keeps locators private
+   D     | 8‑15 | **Domain‑ID** 
+   Reg   |16‑23 | **Region‑ID** 
+   FA    |24‑31 | **Flex‑Algo**
+   SS    |32‑39 | **Set (SS)**
+   NN    |40‑47 | **Node‑ID** (/48 locator)
+
+   *Smaller networks:* Operators that do not require multiple domains or
+   regional partitions can leave **Domain‑ID** and/or **Region‑ID** set
+   to `0x00`.  The byte‑aligned masks still summarise cleanly, and all
+   downstream fields remain valid.
 
 # Security Considerations
 
