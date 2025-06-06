@@ -2,14 +2,14 @@
 
 
 
-WG Working Group                                              Y. N. Here
-Internet-Draft                                    Your Organization Here
+SRv6 Operations                                                   J. Doe
+Internet-Draft                                                   Example
 Intended status: Informational                               6 June 2025
 Expires: 8 December 2025
 
 
                            TODO - Your title
-                  draft-todo-yourname-protocol-latest
+          draft-doe-srv6ops-srv6-addressing-guidelines-latest
 
 Abstract
 
@@ -21,8 +21,8 @@ About This Document
 
    The latest revision of this draft can be found at
    https://example.com/LATEST.  Status information for this document may
-   be found at https://datatracker.ietf.org/doc/draft-todo-yourname-
-   protocol/.
+   be found at https://datatracker.ietf.org/doc/draft-doe-srv6ops-srv6-
+   addressing-guidelines/.
 
    Discussion of this document takes place on the WG Working Group
    mailing list (mailto:WG@example.com), which is archived at
@@ -109,6 +109,6 @@ Acknowledgments
 
 Author's Address
 
-   Your Name Here
-   Your Organization Here
-   Email: your.email@example.com
+   John Doe
+   Example
+   Email: john.doe@example.com
