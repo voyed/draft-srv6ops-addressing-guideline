@@ -393,6 +393,9 @@ Table of Contents
    0.0.10.19 • BGP Router-ID = 0.0.10.19 • IS-IS System-ID (48-bit alt)
    = 0000.0A13.0000
 
+   Note: Mismatches between locator0, loopback, and router-ID indicate
+   configuration typos and aid in audits.
+
 10.  Security Considerations
 
    TODO Security
