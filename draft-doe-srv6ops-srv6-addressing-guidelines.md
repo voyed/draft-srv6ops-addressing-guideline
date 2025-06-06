@@ -9,19 +9,19 @@ number:
 date:
 consensus: true
 v: 3
-area: Operations and Management
-workgroup: SRv6 Operations
+area: "Operations and Management"
+workgroup: "SRv6 Operations"
 keyword:
  - next generation
  - unicorn
  - sparkling distributed ledger
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  group: "SRv6 Operations"
+  type: "Working Group"
+  mail: "srv6ops@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/srv6ops/"
+  github: "voyed/draft-srv6ops-addressing-guideline"
+  latest: "https://voyed.github.io/draft-srv6ops-addressing-guideline/draft-doe-srv6ops-srv6-addressing-guidelines.html"
 
 author:
  -
