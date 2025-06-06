@@ -144,7 +144,7 @@ Bits 0‑7 8‑15 16‑23 24‑31 32‑39 40‑47   (host part)
 
    Field | Bits | Purpose
    ------|------|---------------------------------------------
-   fd    | 0‑7  | ULA prefix keeps locators private
+   fd    | 0‑7  | **ULA prefix keeps locators private**
    D     | 8‑15 | **Domain‑ID** 
    Reg   |16‑23 | **Region‑ID** 
    FA    |24‑31 | **Flex‑Algo**
@@ -180,6 +180,32 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
    deployments need no change.  ISPs can subdivide further—for example
    using the lower nibble of Flex‑Algo as a sub‑region key—while keeping
    summaries on nibble boundaries.
+
+# Deployment Profiles
+
+   The Set (SS) byte lets planners scale by powers of 256: **one even Set
+   supports up to 256 node locators**.  Sizing logic:
+
+     • Small POP (≤256 nodes): 1 even Set  → summary /40
+     • Medium POP (257‑512 nodes): 2 even Sets → summary /39
+     • Large POP (513‑1024 nodes): 4 even Sets → summary /38
+
+   The examples below show the Sets allocated and the summary route that
+   each Region injects into IS‑IS Level 2.
+
+##  Worked Examples (Region‑ID 0x05, Flex‑Algo 0)
+
+###  Small Site – 110 routers
+   • Set 0x0600 → fd00:0500:0600::/40
+   • **Summary injected into L2:** fd00:0500:0600::/40
+
+###  Medium Site – 315 routers
+   • Sets 0x0A00–0x0A10 → fd00:0500:0a00::/39
+   • **Summary injected into L2:** fd00:0500:0a00::/39
+
+###  Large Site – 890 routers
+   • Sets 0x1000–0x1030 → fd00:0500:1000::/38
+   • **Summary injected into L2:** fd00:0500:1000::/38
 
 # Security Considerations
 
