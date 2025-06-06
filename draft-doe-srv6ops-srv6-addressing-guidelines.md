@@ -67,12 +67,12 @@ informative:
    allocations: individual domain and regions or sites can migrate incrementally
    without a network‑wide flag‑day.
 
-   Using **Unique Local Address (ULA)** space keeps infrastructure SIDs 
+   Using **Unique Local Address (ULA)** space keeps infrastructure SIDs
    off the public Internet, limiting the blast‑radius of route leaks or
    spoofing.  A Global‑Unicast scheme is possible but demands airtight
    RPKI and strict ingress filters; it is therefore *NOT RECOMMENDED*
    unless strong business drivers outweigh the risk. *RFC 9602* specifies
-   *5F00::/16* for operators willing to deploy new strict edge ACLs and 
+   *5F00::/16* for operators willing to deploy new strict edge ACLs and
    ROA is also a viable option.
 
    The **C‑SID** paradigm compresses 16‑bit Segment Identifiers inside a
