@@ -1209,19 +1209,22 @@ svg :is([fill="white"], [fill^="#fff"]) {
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-ultra-scale-isp-deployment-" class="internal xref">Ultra-Scale ISP Deployment with End.LBS</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
 </li>
         </ul>
 </nav>
@@ -1511,26 +1514,74 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
 </div>
 </section>
 </div>
-<div id="security-considerations">
+<div id="ultra-scale-isp-deployment-with-endlbs">
 <section id="section-7">
-      <h2 id="name-security-considerations">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      <h2 id="name-ultra-scale-isp-deployment-">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-ultra-scale-isp-deployment-" class="section-name selfRef">Ultra-Scale ISP Deployment with End.LBS</a>
       </h2>
-<p id="section-7-1">TODO Security<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">When the node count is beyond 50k, a single Global‑ID Block (GIB)
+   may no longer be enough.  ultra-scale Operators with 300k nodes can
+   allocate <strong>one /32 Locator‑Block per Region</strong>, then use the End.LBS
+   behaviour to swap blocks at the border router.
+   The SRH carries only <em>one</em> extra SID (the End.LBS C‑SID) regardless of hop‑count.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">The following topology provides an example (hex abbreviated):<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-3">```
+  West Region (fd20::/32)                East Region (fd21::/32)<a href="#section-7-3" class="pilcrow">¶</a></p>
+<p id="section-7-4">fd20:..:0600::       fd20:..:0601::                fd21:..:0a00::
+        +----+              +----+                       +----+
+        |WP1|--------------&gt;|WP2|------------------------&gt;|EP1|
+        +----+  C-SID_W1    +----+  C-SID_W2             +----+
+             \                                    /
+              \                                  /
+               \                                /
+                +------------------------------+
+                |  End.LBS Border Router (BR)  |
+                +------------------------------+
+                           C-SID fd20:..:00ff::
+```
+Legend:  WP1, WP2 = West‑region provider routers EP1 = East‑region provider router<a href="#section-7-4" class="pilcrow">¶</a></p>
+<p id="section-7-5"><strong>Segment List example</strong> (SRH left→right):<a href="#section-7-5" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-7-6">
+<pre>
+ `[C‑SID_W1, C‑SID_W2, fd20:..:00ff:: (End.LBS), C‑SID_E3]`
+</pre><a href="#section-7-6" class="pilcrow">¶</a>
+</div>
+<ul class="normal">
+<li class="normal" id="section-7-7.1">
+          <p id="section-7-7.1.1">At hop 3 the border router executes <strong>End.LBS</strong>: it rewrites the
+destination address from <code>fd20:xxxx:yyzz::/32</code> to the equivalent
+<code>fd21:xxxx:yyzz::/32</code> while leaving the C‑SID suffix unchanged.<a href="#section-7-7.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-7-7.2">
+          <p id="section-7-7.2.1">No additional SID is needed per hop; header growth is constant.<a href="#section-7-7.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-7-7.3">
+          <p id="section-7-7.3.1">Each Region advertises only its own /32 into the core, keeping FIB
+size flat even at continental scale.<a href="#section-7-7.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-8">
+      <h2 id="name-security-considerations">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-8-1">TODO Security<a href="#section-8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-8">
+<section id="section-9">
       <h2 id="name-iana-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-8-1">This document has no IANA actions.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-9-1">This document has no IANA actions.<a href="#section-9-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-normative-references">
-<section id="section-9">
+<section id="section-10">
       <h2 id="name-normative-references">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
       </h2>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
