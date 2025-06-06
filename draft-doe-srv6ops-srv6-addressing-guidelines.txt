@@ -79,9 +79,11 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Terminology
    4.  Design Goals and Requirements
-   5.  Security Considerations
-   6.  IANA Considerations
-   7.  Normative References
+   5.  CSID Address-Encoding Framework (F3216)
+     5.1.  Locator Structure and Field Encoding (ULA-model)
+   6.  Security Considerations
+   7.  IANA Considerations
+   8.  Normative References
    Acknowledgments
    Author's Address
 
@@ -168,15 +170,60 @@ Table of Contents
    *  _G5: – Seamless Domain Stitching_ End.LBS swaps blocks without SRH
       growth.
 
-5.  Security Considerations
+5.  CSID Address-Encoding Framework (F3216)
+
+   This section converts theory into byte boundaries, showing exactly
+   *how* IPv6 bit-richness is partitioned into a multi-level hierarchy
+   (Global-ID → Region → Flex-Algo → Site-Set → Node).
+
+   The 128-bit SRv6 locator is split into a 64-bit _network_ part and a
+   64-bit _host_ part.  The network part encodes Domain-ID, Region-ID,
+   Flex-Algo, Set and Node-ID in byte-aligned fields.
+
+5.1.  Locator Structure and Field Encoding (ULA-model)
+
+   The diagram below shows, byte-by-byte, how an SRv6 locator encodes
+   the hierarchy described in Section 4.  Reading the hexadecimal
+   address reveals the Domain, Region, Flex-Algo, Set and Node values
+   without a lookup table.
+
+   Byte 0 1 2 3 4 5 6-15 Bits 0-7 8-15 16-23 24-31 32-39 40-47 (host
+   part) +---+---+----+----+----+----+----------------+ |fd | D |Reg |
+   FA | SS | NN | host64 |
+   +---+---+----+----+----+----+----------------+
+
+           +=======+=======+===================================+
+           | Field | Bits  | Purpose                           |
+           +=======+=======+===================================+
+           | fd    | 0-7   | ULA prefix keeps locators private |
+           +-------+-------+-----------------------------------+
+           | D     | 8-15  | *Domain-ID*                       |
+           +-------+-------+-----------------------------------+
+           | Reg   | 16-23 | *Region-ID*                       |
+           +-------+-------+-----------------------------------+
+           | FA    | 24-31 | *Flex-Algo*                       |
+           +-------+-------+-----------------------------------+
+           | SS    | 32-39 | *Set (SS)*                        |
+           +-------+-------+-----------------------------------+
+           | NN    | 40-47 | *Node-ID* (/48 locator)           |
+           +-------+-------+-----------------------------------+
+
+                                  Table 1
+
+   _Smaller networks:_ Operators that do not require multiple domains or
+   regional partitions can leave *Domain-ID* and/or *Region-ID* set to
+   0x00.  The byte-aligned masks still summarise cleanly, and all
+   downstream fields remain valid.
+
+6.  Security Considerations
 
    TODO Security
 
-6.  IANA Considerations
+7.  IANA Considerations
 
    This document has no IANA actions.
 
-7.  Normative References
+8.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
