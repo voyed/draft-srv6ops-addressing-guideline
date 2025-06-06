@@ -207,6 +207,45 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
    • Sets 0x1000–0x1030 → fd00:0500:1000::/38
    • **Summary injected into L2:** fd00:0500:1000::/38
 
+# Ultra-Scale ISP Deployment with End.LBS
+
+   When the node count is beyond 50k, a single Global‑ID Block (GIB)
+   may no longer be enough.  ultra-scale Operators with 300k nodes can
+   allocate **one /32 Locator‑Block per Region**, then use the End.LBS
+   behaviour to swap blocks at the border router.
+   The SRH carries only *one* extra SID (the End.LBS C‑SID) regardless of hop‑count.
+
+   The following topology provides an example (hex abbreviated):
+
+```
+  West Region (fd20::/32)                East Region (fd21::/32)
+
+   fd20:..:0600::       fd20:..:0601::                fd21:..:0a00::
+        +----+              +----+                       +----+
+        |WP1|-------------->|WP2|------------------------>|EP1|
+        +----+  C-SID_W1    +----+  C-SID_W2             +----+
+             \                                    /
+              \                                  /
+               \                                /
+                +------------------------------+
+                |  End.LBS Border Router (BR)  |
+                +------------------------------+
+                           C-SID fd20:..:00ff::
+```
+Legend:  WP1, WP2 = West‑region provider routers EP1 = East‑region provider router
+
+
+   **Segment List example** (SRH left→right):
+
+     `[C‑SID_W1, C‑SID_W2, fd20:..:00ff:: (End.LBS), C‑SID_E3]`
+
+   * At hop 3 the border router executes **End.LBS**: it rewrites the
+     destination address from `fd20:xxxx:yyzz::/32` to the equivalent
+     `fd21:xxxx:yyzz::/32` while leaving the C‑SID suffix unchanged.
+   * No additional SID is needed per hop; header growth is constant.
+   * Each Region advertises only its own /32 into the core, keeping FIB
+     size flat even at continental scale.
+
 # Security Considerations
 
 TODO Security
