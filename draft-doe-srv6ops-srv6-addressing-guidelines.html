@@ -1212,19 +1212,22 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-ultra-scale-isp-deployment-" class="internal xref">Ultra-Scale ISP Deployment with End.LBS</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-summarisation-best-practice" class="internal xref">Summarisation Best Practices</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
 </li>
         </ul>
 </nav>
@@ -1562,26 +1565,71 @@ size flat even at continental scale.<a href="#section-7-7.3.1" class="pilcrow">�
       </ul>
 </section>
 </div>
-<div id="security-considerations">
+<div id="summarisation-best-practices">
 <section id="section-8">
-      <h2 id="name-security-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      <h2 id="name-summarisation-best-practice">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-summarisation-best-practice" class="section-name selfRef">Summarisation Best Practices</a>
       </h2>
-<p id="section-8-1">TODO Security<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-1">IPv6 gives ample room to carve hierarchical blocks, but the hierarchy
+   is only useful if <em>each layer advertises exactly one summary into the
+   layer above</em>.  The guiding rule is <strong>summarise at every 8‑bit field
+   boundary</strong> so the mask aligns to a full byte.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">┌─────────────┬────────────┬────────────┐
+   │ Topology    │ Field mask │ Prefix     │
+   ├─────────────┼────────────┼────────────┤
+   │ Core AS     │  /32       │ Reg+FA     │
+   │ Region POPs │  /38–/40   │ Set range  │
+   │ Single node │  /48       │ Node (NN)  │
+   └─────────────┴────────────┴────────────┘<a href="#section-8-2" class="pilcrow">¶</a></p>
+<p id="section-8-3"><strong>How the summarization flow</strong><a href="#section-8-3" class="pilcrow">¶</a></p>
+<p id="section-8-4">## <strong>Region → Core (IS‑IS L2):</strong> Every Region advertises one /32 per
+      Flex‑Algo.  The prefix is derived by masking after the FA byte so
+      all downstream Sets collapse naturally.  A 300 k‑node continental
+      backbone therefore injects at most <em>3 × Regions</em> routes into the
+      core.<a href="#section-8-4" class="pilcrow">¶</a></p>
+<p id="section-8-5">## <strong>Site → Region (IS‑IS L1):</strong> Each Site advertises a summary that
+      stops at the Set byte:  /40 if it needs 1 Set (Small), /39 if it
+      needs 2 Sets (Medium), /38 if it needs 4 Sets (Large).  These
+      prefixes never leave the Region.<a href="#section-8-5" class="pilcrow">¶</a></p>
+<p id="section-8-6">## <strong>Core → Region (downward):</strong> The core leaks only the /32s back
+      into all Regions.  Routers discard any packet whose destination is
+      outside those blocks—protecting against accidental leaks.<a href="#section-8-6" class="pilcrow">¶</a></p>
+<p id="section-8-7"><strong>Provider‑wide Aggregate.</strong>  ASBRs <span class="bcp14">SHOULD</span> also originate a single
+   prefix that covers the <em>entire</em> ISP address block (e.g., fd00::/20 or
+   the equivalent GUA).  Advertising this grand summary into the core
+   and to upstream transit providers adds a final safety net—any stray
+   Internet route leak that re‑enters the network will be suppressed at
+   Region borders because it can never be more specific than the /32s
+   already authorised inside the domain.<a href="#section-8-7" class="pilcrow">¶</a></p>
+<p id="section-8-8"><strong>TE exception.</strong>  Operators may temporarily leak a specific /39 into
+   the core for traffic‑engineering.  Automation <span class="bcp14">MUST</span> withdraw the
+   prefix after use to prevent FIB bloat.<a href="#section-8-8" class="pilcrow">¶</a></p>
+<p id="section-8-9"><strong>Error containment.</strong>  Because the summary masks are byte‑aligned, a
+   single mis‑originated /48 cannot cross a Region boundary—either the
+   packet is caught by a default‑drop rule or it is outside the /32
+   admitted by the core.<a href="#section-8-9" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-9">
+      <h2 id="name-security-considerations">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-9-1">TODO Security<a href="#section-9-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-9">
+<section id="section-10">
       <h2 id="name-iana-considerations">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-9-1">This document has no IANA actions.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<p id="section-10-1">This document has no IANA actions.<a href="#section-10-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-normative-references">
-<section id="section-10">
+<section id="section-11">
       <h2 id="name-normative-references">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
       </h2>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
