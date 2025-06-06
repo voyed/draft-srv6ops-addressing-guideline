@@ -37,15 +37,64 @@ informative:
 
 --- abstract
 
-Testing
+   This document provides operational guidelines for designing Segment
+   Routing over IPv6 (SRv6) addressing plans in Internet‑service‑provider
+   backbones of up to 50 000 nodes.  It specifies a compressed Segment
+   Identifier (C‑SID) locator structure (F3216) that encodes Flex‑Algo,
+   Region‑ID, Site‑ID and Node‑ID inside a fixed /48 locator while
+   leaving space for Local and Global C‑SIDs.  An “ultra‑scale” profile
+   (~300 000 nodes) using End.LBS locator‑block swap is also defined.
+   The aim is to accelerate brown‑field SRv6 migrations by offering
+   deterministic field carving, summarisation rules and actionable
+   operational guidance.
 
 
 --- middle
 
 # Introduction
 
-TODO Introduction
+  IPv6 offers a vast 128‑bit space, allowing operators to build
+   **hierarchical address plans** that align with their physical and
+   operational topology.  When each byte has a clear meaning—Domain‑ID,
+   Region, Flex‑Algo, Site‑Set, Node—summaries fall naturally at region
+   borders and troubleshooting becomes visual.
 
+   A well‑designed SRv6 addressing plan underpins summarisation, fast
+   convergence, traffic‑engineering flexibility and security filtering.
+   For operators migrating from legacy MPLS or flat IPv6 (*brown‑field*
+   environments), renumbering entire domains is rarely feasible.  The
+   scheme described here overlays gracefully on top of existing
+   allocations: individual domain and regions or sites can migrate incrementally
+   without a network‑wide flag‑day.
+
+   Using **Unique Local Address (ULA)** space keeps infrastructure SIDs 
+   off the public Internet, limiting the blast‑radius of route leaks or
+   spoofing.  A Global‑Unicast scheme is possible but demands airtight
+   RPKI and strict ingress filters; it is therefore *NOT RECOMMENDED*
+   unless strong business drivers outweigh the risk. *RFC 9602* specifies
+   *5F00::/16* for operators willing to deploy new strict edge ACLs and 
+   ROA is also a viable option.
+
+   The **C‑SID** paradigm compresses 16‑bit Segment Identifiers inside a
+   /48 locator—balancing header overhead with FIB scale while allowing
+   deterministic summarisation.
+
+# Terminology
+
+   This glossary maps each field or acronym to its role in the
+   hierarchical IPv6 structure so readers can follow subsequent
+   sections without ambiguity.
+
+
+   C‑SID           16‑bit Compressed Segment Identifier  
+   Locator‑Block   Uppermost bits that identify an SRv6 domain  
+   Flex‑Algo       IGP Flexible Algorithm ID  
+   Region‑ID       8‑bit value (bits 17‑24) grouping sites  
+   **Set (SS)**    256 C‑SIDs (one /40) sizing a site; even = GIB, odd = LIB  
+   GIB             Global‑ID Block — even‑indexed Sets carrying global C‑SIDs  
+   LIB             Local‑ID Block  — odd‑indexed Sets filtered at Region edge  
+   SRv6 Site‑ID    Byte‑sized identifier for a POP cluster  
+   End.LBS         Endpoint behaviour performing Locator‑Block Swap
 
 # Conventions and Definitions
 
