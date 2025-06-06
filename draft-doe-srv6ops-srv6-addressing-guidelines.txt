@@ -82,9 +82,14 @@ Table of Contents
    5.  CSID Address-Encoding Framework (F3216)
      5.1.  Locator Structure and Field Encoding (ULA-model)
      5.2.  Locator Structure for RFC 9602 (5F00::/16-model)
-   6.  Security Considerations
-   7.  IANA Considerations
-   8.  Normative References
+   6.  Deployment Profiles
+     6.1.  Worked Examples (Region-ID 0x05, Flex-Algo 0)
+       6.1.1.  Small Site – 110 routers
+       6.1.2.  Medium Site – 315 routers
+       6.1.3.  Large Site – 890 routers
+   7.  Security Considerations
+   8.  IANA Considerations
+   9.  Normative References
    Acknowledgments
    Author's Address
 
@@ -193,21 +198,21 @@ Table of Contents
    FA | SS | NN | host64 |
    +---+---+----+----+----+----+----------------+
 
-           +=======+=======+===================================+
-           | Field | Bits  | Purpose                           |
-           +=======+=======+===================================+
-           | fd    | 0-7   | ULA prefix keeps locators private |
-           +-------+-------+-----------------------------------+
-           | D     | 8-15  | *Domain-ID*                       |
-           +-------+-------+-----------------------------------+
-           | Reg   | 16-23 | *Region-ID*                       |
-           +-------+-------+-----------------------------------+
-           | FA    | 24-31 | *Flex-Algo*                       |
-           +-------+-------+-----------------------------------+
-           | SS    | 32-39 | *Set (SS)*                        |
-           +-------+-------+-----------------------------------+
-           | NN    | 40-47 | *Node-ID* (/48 locator)           |
-           +-------+-------+-----------------------------------+
+          +=======+=======+=====================================+
+          | Field | Bits  | Purpose                             |
+          +=======+=======+=====================================+
+          | fd    | 0-7   | *ULA prefix keeps locators private* |
+          +-------+-------+-------------------------------------+
+          | D     | 8-15  | *Domain-ID*                         |
+          +-------+-------+-------------------------------------+
+          | Reg   | 16-23 | *Region-ID*                         |
+          +-------+-------+-------------------------------------+
+          | FA    | 24-31 | *Flex-Algo*                         |
+          +-------+-------+-------------------------------------+
+          | SS    | 32-39 | *Set (SS)*                          |
+          +-------+-------+-------------------------------------+
+          | NN    | 40-47 | *Node-ID* (/48 locator)             |
+          +-------+-------+-------------------------------------+
 
                                   Table 1
 
@@ -241,15 +246,44 @@ Table of Contents
    using the lower nibble of Flex-Algo as a sub-region key—while keeping
    summaries on nibble boundaries.
 
-6.  Security Considerations
+6.  Deployment Profiles
+
+   The Set (SS) byte lets planners scale by powers of 256: *one even Set
+   supports up to 256 node locators*.  Sizing logic:
+
+    • Small POP (≤256 nodes): 1 even Set  → summary /40
+    • Medium POP (257-512 nodes): 2 even Sets → summary /39
+    • Large POP (513-1024 nodes): 4 even Sets → summary /38
+
+   The examples below show the Sets allocated and the summary route that
+   each Region injects into IS-IS Level 2.
+
+6.1.  Worked Examples (Region-ID 0x05, Flex-Algo 0)
+
+6.1.1.  Small Site – 110 routers
+
+   • Set 0x0600 → fd00:0500:0600::/40 • *Summary injected into L2:*
+   fd00:0500:0600::/40
+
+6.1.2.  Medium Site – 315 routers
+
+   • Sets 0x0A00–0x0A10 → fd00:0500:0a00::/39 • *Summary injected into
+   L2:* fd00:0500:0a00::/39
+
+6.1.3.  Large Site – 890 routers
+
+   • Sets 0x1000–0x1030 → fd00:0500:1000::/38 • *Summary injected into
+   L2:* fd00:0500:1000::/38
+
+7.  Security Considerations
 
    TODO Security
 
-7.  IANA Considerations
+8.  IANA Considerations
 
    This document has no IANA actions.
 
-8.  Normative References
+9.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
