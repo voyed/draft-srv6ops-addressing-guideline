@@ -246,6 +246,55 @@ Legend:  WP1, WP2 = West‑region provider routers EP1 = East‑region provide
    * Each Region advertises only its own /32 into the core, keeping FIB
      size flat even at continental scale.
 
+# Summarisation Best Practices
+
+   IPv6 gives ample room to carve hierarchical blocks, but the hierarchy
+   is only useful if *each layer advertises exactly one summary into the
+   layer above*.  The guiding rule is **summarise at every 8‑bit field
+   boundary** so the mask aligns to a full byte.
+
+   ┌─────────────┬────────────┬────────────┐
+   │ Topology    │ Field mask │ Prefix     │
+   ├─────────────┼────────────┼────────────┤
+   │ Core AS     │  /32       │ Reg+FA     │
+   │ Region POPs │  /38–/40   │ Set range  │
+   │ Single node │  /48       │ Node (NN)  │
+   └─────────────┴────────────┴────────────┘
+
+   **How the summarization flow**
+
+   ## **Region → Core (IS‑IS L2):** Every Region advertises one /32 per
+      Flex‑Algo.  The prefix is derived by masking after the FA byte so
+      all downstream Sets collapse naturally.  A 300 k‑node continental
+      backbone therefore injects at most *3 × Regions* routes into the
+      core.
+
+   ## **Site → Region (IS‑IS L1):** Each Site advertises a summary that
+      stops at the Set byte:  /40 if it needs 1 Set (Small), /39 if it
+      needs 2 Sets (Medium), /38 if it needs 4 Sets (Large).  These
+      prefixes never leave the Region.
+
+   ## **Core → Region (downward):** The core leaks only the /32s back
+      into all Regions.  Routers discard any packet whose destination is
+      outside those blocks—protecting against accidental leaks.
+
+   **Provider‑wide Aggregate.**  ASBRs SHOULD also originate a single
+   prefix that covers the *entire* ISP address block (e.g., fd00::/20 or
+   the equivalent GUA).  Advertising this grand summary into the core
+   and to upstream transit providers adds a final safety net—any stray
+   Internet route leak that re‑enters the network will be suppressed at
+   Region borders because it can never be more specific than the /32s
+   already authorised inside the domain.
+
+   **TE exception.**  Operators may temporarily leak a specific /39 into
+   the core for traffic‑engineering.  Automation MUST withdraw the
+   prefix after use to prevent FIB bloat.
+
+   **Error containment.**  Because the summary masks are byte‑aligned, a
+   single mis‑originated /48 cannot cross a Region boundary—either the
+   packet is caught by a default‑drop rule or it is outside the /32
+   admitted by the core.
+
 # Security Considerations
 
 TODO Security
