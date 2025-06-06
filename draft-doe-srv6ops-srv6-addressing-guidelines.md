@@ -72,13 +72,16 @@ informative:
    off the public Internet, limiting the blast‑radius of route leaks or
    spoofing.  A Global‑Unicast scheme is possible but demands airtight
    RPKI and strict ingress filters; it is therefore *NOT RECOMMENDED*
-   unless strong business drivers outweigh the risk. *RFC 9602* specifies
-   *5F00::/16* for operators willing to deploy new strict edge ACLs and
-   ROA is also a viable option.
+   unless strong business drivers outweigh the risk. RFC9602 specifies
+   *5F00::/16* for operators willing to deploy new strict at their border and edge ACLs ROA is also a viable option.
 
    The **C‑SID** paradigm compresses 16‑bit Segment Identifiers inside a
    /48 locator—balancing header overhead with FIB scale while allowing
    deterministic summarisation.
+
+# Conventions and Definitions
+
+{::boilerplate bcp14-tagged}
 
 # Terminology
 
@@ -97,11 +100,23 @@ informative:
    * SRv6 Site‑ID:    Byte‑sized identifier for a POP cluster
    * End.LBS:         Endpoint behaviour performing Locator‑Block Swap
 
+# Design Goals and Requirements
 
+   The five goals below justify every bit choice in the locator.  They
+   translate generic IPv6 abundance into a practical, byte‑aligned
+   hierarchy that scales smoothly from small POPs to continental C‑SID
+   domains.
 
-# Conventions and Definitions
+   * *G1: – Scalable Aggregation* ≤ 3 new routes in the core after any
+   failure.
+   * *G2: – Per‑Node /48 Locator* Preserves /64 for services and /96 for
+   locals while capping FIB size.
+   * *G3: – Flex‑Algo Plane Parity* Bit positions identical across planes.
+   * *G4: – Global vs Local Split* Even Sets = Global C‑SIDs, odd Sets =
+   Local C‑SIDs.
+   * *G5: – Seamless Domain Stitching* End.LBS swaps blocks without SRH
+   growth.
 
-{::boilerplate bcp14-tagged}
 
 
 # Security Considerations
