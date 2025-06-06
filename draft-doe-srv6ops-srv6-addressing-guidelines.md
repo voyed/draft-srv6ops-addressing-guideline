@@ -79,22 +79,7 @@ informative:
    /48 locator—balancing header overhead with FIB scale while allowing
    deterministic summarisation.
 
-# Terminology
 
-   This glossary maps each field or acronym to its role in the
-   hierarchical IPv6 structure so readers can follow subsequent
-   sections without ambiguity.
-
-
-   C‑SID           16‑bit Compressed Segment Identifier  
-   Locator‑Block   Uppermost bits that identify an SRv6 domain  
-   Flex‑Algo       IGP Flexible Algorithm ID  
-   Region‑ID       8‑bit value (bits 17‑24) grouping sites  
-   **Set (SS)**    256 C‑SIDs (one /40) sizing a site; even = GIB, odd = LIB  
-   GIB             Global‑ID Block — even‑indexed Sets carrying global C‑SIDs  
-   LIB             Local‑ID Block  — odd‑indexed Sets filtered at Region edge  
-   SRv6 Site‑ID    Byte‑sized identifier for a POP cluster  
-   End.LBS         Endpoint behaviour performing Locator‑Block Swap
 
 # Conventions and Definitions
 
