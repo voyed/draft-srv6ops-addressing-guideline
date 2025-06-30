@@ -4,8 +4,8 @@
 
 SRv6 Operations                                                   J. Doe
 Internet-Draft                                                   Example
-Intended status: Informational                               6 June 2025
-Expires: 8 December 2025
+Intended status: Informational                              30 June 2025
+Expires: 1 January 2026
 
 
                        SRv6 Addressing Guidelines
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 December 2025.
+   This Internet-Draft will expire on 1 January 2026.
 
 Copyright Notice
 
@@ -87,13 +87,12 @@ Table of Contents
        6.1.1.  Small Site – 110 routers
        6.1.2.  Medium Site – 315 routers
        6.1.3.  Large Site – 890 routers
-   7.  Ultra-Scale ISP Deployment with End.LBS
-   8.  Summarisation Best Practices
-   9.  Other Operational Considerations
-     9.1.  Loopback Address and NET-ID/Router-ID Derivation
-   10. Security Considerations
-   11. IANA Considerations
-   12. Normative References
+   7.  Summarisation Best Practices
+   8.  Other Operational Considerations
+     8.1.  Loopback Address and NET-ID/Router-ID Derivation
+   9.  Security Considerations
+   10. IANA Considerations
+   11. Normative References
    Acknowledgments
    Author's Address
 
@@ -279,40 +278,7 @@ Table of Contents
    • Sets 0x1000–0x1030 → fd00:0500:1000::/38 • *Summary injected into
    L2:* fd00:0500:1000::/38
 
-7.  Ultra-Scale ISP Deployment with End.LBS
-
-   When the node count is beyond 50k, a single Global-ID Block (GIB) may
-   no longer be enough.  ultra-scale Operators with 300k nodes can
-   allocate *one /32 Locator-Block per Region*, then use the End.LBS
-   behaviour to swap blocks at the border router.  The SRH carries only
-   _one_ extra SID (the End.LBS C-SID) regardless of hop-count.
-
-   The following topology provides an example (hex abbreviated):
-
-   ``` West Region (fd20::/32) East Region (fd21::/32)
-
-   fd20:..:0600:: fd20:..:0601:: fd21:..:0a00:: +----+ +----+
-   +----+ |WP1|-------------->|WP2|------------------------>|EP1| +----+
-   C-SID_W1 +----+ C-SID_W2 +----+ \ / \ / \ /
-   +------------------------------+ | End.LBS Border Router (BR) |
-   +------------------------------+ C-SID fd20:..:00ff:: ``` Legend:
-   WP1, WP2 = West-region provider routers EP1 = East-region provider
-   router
-
-   *Segment List example* (SRH left→right):
-
-    `[C-SID_W1, C-SID_W2, fd20:..:00ff:: (End.LBS), C-SID_E3]`
-
-   *  At hop 3 the border router executes *End.LBS*: it rewrites the
-      destination address from fd20:xxxx:yyzz::/32 to the equivalent
-      fd21:xxxx:yyzz::/32 while leaving the C-SID suffix unchanged.
-
-   *  No additional SID is needed per hop; header growth is constant.
-
-   *  Each Region advertises only its own /32 into the core, keeping FIB
-      size flat even at continental scale.
-
-8.  Summarisation Best Practices
+7.  Summarisation Best Practices
 
    IPv6 gives ample room to carve hierarchical blocks, but the hierarchy
    is only useful if _each layer advertises exactly one summary into the
@@ -358,7 +324,7 @@ Table of Contents
    packet is caught by a default-drop rule or it is outside the /32
    admitted by the core.
 
-9.  Other Operational Considerations
+8.  Other Operational Considerations
 
    In an IPv6-only backbone the control-plane still needs several legacy
    32-bit identifiers—IS-IS NET-ID, BGP router-ID, IS-IS System-ID—that
@@ -372,39 +338,66 @@ Table of Contents
     • locator0 → **fd00:0500:0a13::/48**
     • L2 summary → **fd00:0500:0a00::/39**
 
-9.1.  Loopback Address and NET-ID/Router-ID Derivation
+8.1.  Loopback Address and NET-ID/Router-ID Derivation
 
    An IPv6-only backbone still requires legacy 32-bit identifiers for
    IS-IS NET-ID and BGP router-ID.  Deriving these directly from the
    hierarchical locator eliminates manual spreadsheets and guarantees
    consistency.
 
-   Example (Medium Site from Section 5.1.2): • Region-ID = 0x05, Flex-
-   Algo = 0x00 • SS = 0x0A, Node-ID = 0x13B (hex) • locator0 =
-   fd00:0500:0A13::/48 • L1 summary = fd00:0500:0A00::/39
+   *  Example (Medium Site from Section 5.1.2):
 
-   Loopback: • Rule: Loopback = locator0 + ::1/128 from locator0.  •
-   Example: fd00:0500:0A13::1/128 • Because this resides inside the /48
-   advertised by IS-IS, no additional loopback prefix is needed (reduces
-   FIB noise)
+      -  Region-ID = 0x05, Flex-Algo = 0x00
 
-   Router-ID (BGP & IS-IS): • Method: Use lower 32 bits of loopback,
-   rendered in dotted-decimal.  • Loopback low-32 bits = 0x00000A13 →
-   0.0.10.19 • BGP Router-ID = 0.0.10.19 • IS-IS System-ID (48-bit alt)
-   = 0000.0A13.0000
+      -  SS = 0x0A, Node-ID = 0x13B (hex)
+
+      -  locator0 = fd00:0500:0A13::/48
+
+      -  L1 summary = fd00:0500:0A00::/39
+
+   *  Loopback:
+
+      -  Rule: Loopback = locator0 + ::1/128 from locator0.
+
+      -  Example: fd00:0500:0A13::1/128
+
+      -  Because this resides inside the /48 advertised by IS-IS, no
+         additional loopback prefix is needed (reduces FIB noise)
+
+   *  IS-IS NET-ID:
+
+      -  Format: 49.Area-ID.System-ID.00
+
+      -  Area-ID: Operator-defined (e.g., area 10)
+
+      -  System-ID: Last three bytes of locator0, nibble-grouped:
+         locator0 (0A13:0B00:0000) → System-ID = 0A13.0B00.00
+
+      -  NET-ID = 49.10.0A13.0B00.00
+
+   *  Router-ID (BGP & IS-IS):
+
+      -  Method: Use lower 32 bits of loopback, rendered in dotted-
+         decimal.
+
+      -  Loopback low-32 bits = 0x00000A13 → 0.0.10.19
+
+      -  BGP Router-ID = 0.0.10.19
+
+      -  IS-IS System-ID (48-bit alt) = 0000.0A13.0000
 
    Note: Mismatches between locator0, loopback, and router-ID indicate
    configuration typos and aid in audits.
 
-10.  Security Considerations
+9.  Security Considerations
 
    TODO Security
 
-11.  IANA Considerations
+10.  IANA Considerations
 
    This document has no IANA actions.
 
-12.  Normative References
+11.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
