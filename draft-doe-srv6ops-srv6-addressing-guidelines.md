@@ -98,7 +98,7 @@ informative:
    * GIB:             Global‑ID Block — even‑indexed Sets carrying global C‑SIDs
    * LIB:             Local‑ID Block  — odd‑indexed Sets filtered at Region edge
    * SRv6 Site‑ID:    Byte‑sized identifier for a POP cluster
-   * End.LBS:         Endpoint behaviour performing Locator‑Block Swap
+
 
 # Design Goals and Requirements
 
@@ -114,8 +114,7 @@ informative:
    * *G3: – Flex‑Algo Plane Parity* Bit positions identical across planes.
    * *G4: – Global vs Local Split* Even Sets = Global C‑SIDs, odd Sets =
    Local C‑SIDs.
-   * *G5: – Seamless Domain Stitching* End.LBS swaps blocks without SRH
-   growth.
+
 
 # CSID Address‑Encoding Framework (F3216)
 
@@ -138,7 +137,7 @@ informative:
 Byte  0    1    2    3    4    5       6‑15
 Bits 0‑7 8‑15 16‑23 24‑31 32‑39 40‑47   (host part)
      +---+---+----+----+----+----+----------------+
-     |fd | D |Reg | FA | SS | NN |    host64      |
+     |fd | D |Reg | FA | ST | NN |    host64      |
      +---+---+----+----+----+----+----------------+
 ```
 
@@ -148,7 +147,7 @@ Bits 0‑7 8‑15 16‑23 24‑31 32‑39 40‑47   (host part)
    D     | 8‑15 | **Domain‑ID** 
    Reg   |16‑23 | **Region‑ID** 
    FA    |24‑31 | **Flex‑Algo**
-   SS    |32‑39 | **Set (SS)**
+   ST    |32‑39 | **Set (ST)**
    NN    |40‑47 | **Node‑ID** (/48 locator)
 
    *Smaller networks:* Operators that do not require multiple domains or
@@ -165,7 +164,7 @@ Bits 0‑7 8‑15 16‑23 24‑31 32‑39 40‑47   (host part)
 Nibbles (4 bits)                      host part
  0   1   2     3       4      5      6‑15
 +----+----+-----+------+-------+----+----------------+
-| 5F | 00 |  D  |  R  |  FA   | SS |  NN  |  host64  |
+| 5F | 00 |  D  |  R  |  FA   | ST |  NN  |  host64  |
 +----+----+-----+------+-------+----+----------------+
 Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
 ```
@@ -173,7 +172,7 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
    * D  (Domain‑ID) – 4 bits → up to **15 domains** (0x1‑0xF)
    * R  (Region‑ID) – 4 bits → **15 regions** per domain (0x1‑0xF)
    * FA (Flex‑Algo) – full byte (24‑31)
-   * SS / NN – identical meaning as in Section 4.1
+   * ST / NN – identical meaning as in Section 4.1
 
    Because the first two bytes are locked (*5F00*), Domain and Region
    live in the third byte.  Flex‑Algo retains a full byte so existing
@@ -278,7 +277,7 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
 
  * Example (Medium Site from Section 5.1.2):
      * Region-ID = 0x05, Flex-Algo = 0x00
-     * SS = 0x0A, Node-ID = 0x13B (hex)
+     * ST = 0x0A, Node-ID = 0x13B (hex)
      * locator0 = fd00:0500:0A13::/48
      * L1 summary = fd00:0500:0A00::/39
 
@@ -307,7 +306,35 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
 
 # Security Considerations
 
-TODO Security
+The hierarchical IP addressing plan proposed here offers natural ACL
+boundaries—and operators should leverage them to minimize security risk:
+
+ * Byte-Aligned Summaries as ACL Anchors  
+      Because locators and summaries align on full-byte boundaries (e.g.,
+      /32 for Region, /48 for Site), ACLs can match on these exact prefixes.
+      For example, an ACL permitting fd00:0500::/32 automatically allows all
+      Site- and Node-level prefixes under Region 05 but denies anything
+      outside. Maintaining ACLs at each Region border is therefore
+      straightforward and less error-prone than arbitrary masks.
+ 
+ * Locator→Loopback Consistency Checks  
+      Loopbacks derive directly from the /48 locator (e.g., fd00:0500:0A13::1). If
+      an operator misassigns a locator, a simple script can detect mismatches
+      between the advertised /48 and the loopback’s low-order 32-bit value. This
+      check helps prevent accidental duplicate identifiers that could be
+      exploited for spoofing.
+ 
+ * Logging and Periodic Audits  
+      Log locator assignments and summary changes at each aggregation level.
+      Periodically audit ACLs to ensure they align with the current hierarchy (e.g.,
+      confirm that all allowed /48s fall under their parent /32). This catch-all
+      approach helps identify any unauthorized or stale entries before they
+      compromise security.
+
+By combining byte-aligned summarization with simple ACL rules at Region or
+   Site boundaries, operators can enforce strict filtering with minimal complexity,
+   leveraging the hierarchical plan to make ACL configuration both robust and
+   scalable.
 
 
 # IANA Considerations
@@ -320,4 +347,4 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-TODO acknowledge.
+
