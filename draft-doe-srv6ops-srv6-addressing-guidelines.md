@@ -207,45 +207,6 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
    • Sets 0x1000–0x1030 → fd00:0500:1000::/38
    • **Summary injected into L2:** fd00:0500:1000::/38
 
-# Ultra-Scale ISP Deployment with End.LBS
-
-   When the node count is beyond 50k, a single Global‑ID Block (GIB)
-   may no longer be enough.  ultra-scale Operators with 300k nodes can
-   allocate **one /32 Locator‑Block per Region**, then use the End.LBS
-   behaviour to swap blocks at the border router.
-   The SRH carries only *one* extra SID (the End.LBS C‑SID) regardless of hop‑count.
-
-   The following topology provides an example (hex abbreviated):
-
-```
-  West Region (fd20::/32)                East Region (fd21::/32)
-
-   fd20:..:0600::       fd20:..:0601::                fd21:..:0a00::
-        +----+              +----+                       +----+
-        |WP1|-------------->|WP2|------------------------>|EP1|
-        +----+  C-SID_W1    +----+  C-SID_W2             +----+
-             \                                    /
-              \                                  /
-               \                                /
-                +------------------------------+
-                |  End.LBS Border Router (BR)  |
-                +------------------------------+
-                           C-SID fd20:..:00ff::
-```
-Legend:  WP1, WP2 = West‑region provider routers EP1 = East‑region provider router
-
-
-   **Segment List example** (SRH left→right):
-
-     `[C‑SID_W1, C‑SID_W2, fd20:..:00ff:: (End.LBS), C‑SID_E3]`
-
-   * At hop 3 the border router executes **End.LBS**: it rewrites the
-     destination address from `fd20:xxxx:yyzz::/32` to the equivalent
-     `fd21:xxxx:yyzz::/32` while leaving the C‑SID suffix unchanged.
-   * No additional SID is needed per hop; header growth is constant.
-   * Each Region advertises only its own /32 into the core, keeping FIB
-     size flat even at continental scale.
-
 # Summarisation Best Practices
 
    IPv6 gives ample room to carve hierarchical blocks, but the hierarchy
@@ -315,23 +276,30 @@ Legend:  WP1, WP2 = West‑region provider routers EP1 = East‑region provide
    NET-ID and BGP router-ID. Deriving these directly from the hierarchical
    locator eliminates manual spreadsheets and guarantees consistency.
 
-   Example (Medium Site from Section 5.1.2):
-     • Region-ID = 0x05, Flex-Algo = 0x00
-     • SS = 0x0A, Node-ID = 0x13B (hex)
-     • locator0 = fd00:0500:0A13::/48
-     • L1 summary = fd00:0500:0A00::/39
+ * Example (Medium Site from Section 5.1.2):
+     * Region-ID = 0x05, Flex-Algo = 0x00
+     * SS = 0x0A, Node-ID = 0x13B (hex)
+     * locator0 = fd00:0500:0A13::/48
+     * L1 summary = fd00:0500:0A00::/39
 
-   Loopback:
-     • Rule: Loopback = locator0 + ::1/128 from locator0.
-     • Example: fd00:0500:0A13::1/128
-     • Because this resides inside the /48 advertised by IS-IS, no additional
+* Loopback:
+     * Rule: Loopback = locator0 + ::1/128 from locator0.
+     * Example: fd00:0500:0A13::1/128
+     * Because this resides inside the /48 advertised by IS-IS, no additional
        loopback prefix is needed (reduces FIB noise)
 
-   Router-ID (BGP & IS-IS):
-     • Method: Use lower 32 bits of loopback, rendered in dotted-decimal.
-     • Loopback low-32 bits = 0x00000A13 → 0.0.10.19
-     • BGP Router-ID = 0.0.10.19
-     • IS-IS System-ID (48-bit alt) = 0000.0A13.0000
+* IS-IS NET-ID:
+     * Format: 49.Area-ID.System-ID.00
+     * Area-ID: Operator-defined (e.g., area 10)
+     * System-ID: Last three bytes of locator0, nibble-grouped:
+       locator0 (0A13:0B00:0000) → System-ID = 0A13.0B00.00
+     * NET-ID = 49.10.0A13.0B00.00
+
+* Router-ID (BGP & IS-IS):
+     * Method: Use lower 32 bits of loopback, rendered in dotted-decimal.
+     * Loopback low-32 bits = 0x00000A13 → 0.0.10.19
+     * BGP Router-ID = 0.0.10.19
+     * IS-IS System-ID (48-bit alt) = 0000.0A13.0000
 
  Note: Mismatches between locator0, loopback, and router-ID indicate
    configuration typos and aid in audits.
