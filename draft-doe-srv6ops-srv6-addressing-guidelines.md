@@ -26,9 +26,17 @@ venue:
 
 author:
  -
-    fullname: John Doe
-    organization: Example
-    email: john.doe@example.com
+    fullname: Nils Warnke
+    organization: Deutsche Telekom
+    email: nils.warnke@telekom.de
+
+    fullname: Martin Horneffer
+    organization: Deutsche Telekom
+    email: Martin.Horneffer@telekom.de
+
+    fullname: Daniel Voyer
+    organization: Cisco
+    email: davoyer@cisco.com
 
 normative:
 
@@ -309,22 +317,22 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
 The hierarchical IP addressing plan proposed here offers natural ACL
 boundaries—and operators should leverage them to minimize security risk:
 
- * Byte-Aligned Summaries as ACL Anchors  
+ * Byte-Aligned Summaries as ACL Anchors
       Because locators and summaries align on full-byte boundaries (e.g.,
       /32 for Region, /48 for Site), ACLs can match on these exact prefixes.
       For example, an ACL permitting fd00:0500::/32 automatically allows all
       Site- and Node-level prefixes under Region 05 but denies anything
       outside. Maintaining ACLs at each Region border is therefore
       straightforward and less error-prone than arbitrary masks.
- 
- * Locator→Loopback Consistency Checks  
+
+ * Locator→Loopback Consistency Checks
       Loopbacks derive directly from the /48 locator (e.g., fd00:0500:0A13::1). If
       an operator misassigns a locator, a simple script can detect mismatches
       between the advertised /48 and the loopback’s low-order 32-bit value. This
       check helps prevent accidental duplicate identifiers that could be
       exploited for spoofing.
- 
- * Logging and Periodic Audits  
+
+ * Logging and Periodic Audits
       Log locator assignments and summary changes at each aggregation level.
       Periodically audit ACLs to ensure they align with the current hierarchy (e.g.,
       confirm that all allowed /48s fall under their parent /32). This catch-all
