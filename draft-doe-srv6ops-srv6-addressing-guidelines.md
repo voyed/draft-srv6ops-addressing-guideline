@@ -51,9 +51,7 @@ informative:
    backbones of up to 50 000 nodes.  It specifies a compressed Segment
    Identifier (C‑SID) locator structure (F3216) that encodes Flex‑Algo,
    Region‑ID, Site‑ID and Node‑ID inside a fixed /48 locator while
-   leaving space for Local and Global C‑SIDs.  An “ultra‑scale” profile
-   (~300 000 nodes) using End.LBS locator‑block swap is also defined.
-   The aim is to accelerate brown‑field SRv6 migrations by offering
+   leaving space for Local and Global C‑SIDs. The aim is to accelerate brown‑field SRv6 migrations by offering
    deterministic field carving, summarisation rules and actionable
    operational guidance.
 
@@ -325,14 +323,6 @@ boundaries—and operators should leverage them to minimize security risk:
       Site- and Node-level prefixes under Region 05 but denies anything
       outside. Maintaining ACLs at each Region border is therefore
       straightforward and less error-prone than arbitrary masks.
-
-* Locator→Loopback Consistency Checks
-
-      Loopbacks derive directly from the /48 locator (e.g., fd00:0500:0A13::1). If
-      an operator misassigns a locator, a simple script can detect mismatches
-      between the advertised /48 and the loopback’s low-order 32-bit value. This
-      check helps prevent accidental duplicate identifiers that could be
-      exploited for spoofing.
 
  * Logging and Periodic Audits
 
