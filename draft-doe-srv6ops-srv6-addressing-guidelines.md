@@ -324,6 +324,13 @@ boundaries—and operators should leverage them to minimize security risk:
       outside. Maintaining ACLs at each Region border is therefore
       straightforward and less error-prone than arbitrary masks.
 
+ * Locator->Loopback Consistency Checks
+      Loopbacks derive directly from the /48 locator (e.g., fd00:0500:0a13::1). If
+      an operator misassings a locator, a simple script can detect mismatches
+      between the advertised /48 and the loopback's low-order 32-bit value. This 
+      check helps prevent accidental duplicate identifiers that could be exploited
+      for spoofing.
+
  * Logging and Periodic Audits
 
       Log locator assignments and summary changes at each aggregation level.
