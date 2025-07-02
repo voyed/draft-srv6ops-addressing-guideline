@@ -86,7 +86,7 @@ Table of Contents
    4.  Design Goals and Requirements
    5.  CSID Address-Encoding Framework (F3216)
      5.1.  Locator Structure and Field Encoding (ULA-model)
-     5.2.  Locator Structure for RFC 9602 (5F00::/16-model)
+     5.2.  Locator Structure for RFC 9602 (5f00::/16-model)
    6.  Deployment Profiles
      6.1.  Worked Examples (Region-ID 0x05, Flex-Algo 0)
        6.1.1.  Small Site – 110 routers
@@ -224,7 +224,7 @@ Table of Contents
    0x00.  The byte-aligned masks still summarise cleanly, and all
    downstream fields remain valid.
 
-5.2.  Locator Structure for RFC 9602 (5F00::/16-model)
+5.2.  Locator Structure for RFC 9602 (5f00::/16-model)
 
    Under _5F00::/16_, the first 16 bits are fixed.  The locator
    therefore pushes the hierarchy one half-byte to the right:
@@ -331,7 +331,7 @@ Table of Contents
    were traditionally filled with an IPv4 loopback.  Deriving these
    values *directly from the hierarchical locator0* eliminates manual
    spreadsheets and guarantees internal consistency.  The examples below
-   use the _medium-site_ case from Section 5.1.2:
+   use the _medium-site_ case from Section 5.1:
 
     • Region-ID 0x05, Flex-Algo 0
     • Set 0x0a10, Node 0x13b
