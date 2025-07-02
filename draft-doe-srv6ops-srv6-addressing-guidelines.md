@@ -34,6 +34,14 @@ author:
     organization: Deutsche Telekom
     email: Martin.Horneffer@telekom.de
 
+    fullname: Nicklous Morris
+    organization: VerizonWireless
+    email: nicklous.morris@verizonwireless.com
+
+    fullname: Sara Al-kokhon
+    organiation: Bell Canada
+    email: sara.al-Kokhon@bell.ca
+
     fullname: Daniel Voyer
     organization: Cisco Systems
     email: davoyer@cisco.com
