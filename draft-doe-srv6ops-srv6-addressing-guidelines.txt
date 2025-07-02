@@ -248,13 +248,29 @@ Table of Contents
                            +----- Domain-ID (4 bits)              |
    <------------------------ network / locator (48 bits) ----->---+
 
-   Field Bits Purpose ----- -----
-   --------------------------------------------------- 5F00 0-15 Fixed
-   block reserved by RFC9602 for SRv6 locators D 16-19 Domain-ID — up to
-   15 SRv6 domains (0x1…0xF) R 20-23 Region-ID — up to 15 regions per
-   domain (0x1…0xF) FA 24-31 IGP Flexible-Algorithm identifier ST 32-39
-   Site-seT; even = GIB, odd = LIB NN 40-47 Node-ID — uniquely
-   identifies one router (/48)
+   +=======+=======+===================================================+
+   | Field | Bits  | Purpose                                           |
+   +=======+=======+===================================================+
+   | 5F00  | 0-15  | Fixed block reserved by                           |
+   |       |       | RFC9602 for SRv6 locators                         |
+   +-------+-------+---------------------------------------------------+
+   | D     | 16-19 | Domain-ID — up to 15 SRv6                         |
+   |       |       | domains (0x1…0xF)                                 |
+   +-------+-------+---------------------------------------------------+
+   | R     | 20-23 | Region-ID — up to 15 regions                      |
+   |       |       | per domain (0x1…0xF)                              |
+   +-------+-------+---------------------------------------------------+
+   | FA    | 24-31 | IGP Flexible-Algorithm                            |
+   |       |       | identifier                                        |
+   +-------+-------+---------------------------------------------------+
+   | ST    | 32-39 | Site-seT; even = GIB, odd =                       |
+   |       |       | LIB                                               |
+   +-------+-------+---------------------------------------------------+
+   | NN    | 40-47 | Node-ID — uniquely                                |
+   |       |       | identifies one router (/48)                       |
+   +-------+-------+---------------------------------------------------+
+
+                                  Table 2
 
    Planning tip: single-domain or flat-region deployments may set D and/
    or R to 0x0; masks still summarise cleanly.  ISPs can subdivide
@@ -304,10 +320,10 @@ Table of Contents
                 +----------------+-----------+-----------+
                 | Region POPs    | /38-/40   | Set range |
                 +----------------+-----------+-----------+
-                | Single node.   | /48.      | Node (NN) |
+                | Single node.   | /48       | Node (NN) |
                 +----------------+-----------+-----------+
 
-                                 Table 2
+                                 Table 3
 
    *How the summarization flow*
 

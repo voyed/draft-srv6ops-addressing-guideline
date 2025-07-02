@@ -1469,14 +1469,48 @@ fields remain byte‑aligned.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 &lt;------------------------ network / locator (48 bits) -----&gt;---+
 </pre><a href="#section-5.2-2" class="pilcrow">¶</a>
 </div>
-<p id="section-5.2-3">Field  Bits   Purpose
------  -----  ---------------------------------------------------
-5F00   0‑15   Fixed block reserved by RFC9602 for SRv6 locators
-D      16‑19  Domain‑ID — up to 15 SRv6 domains (0x1…0xF)
-R      20‑23  Region‑ID — up to 15 regions per domain (0x1…0xF)
-FA     24‑31  IGP Flexible‑Algorithm identifier
-ST     32‑39  Site‑seT; even = GIB, odd = LIB
-NN     40‑47  Node‑ID — uniquely identifies one router (/48)<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+<table class="center" id="table-2">
+          <caption><a href="#table-2" class="selfRef">Table 2</a></caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Field</th>
+              <th class="text-left" rowspan="1" colspan="1">Bits</th>
+              <th class="text-left" rowspan="1" colspan="1">Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">5F00</td>
+              <td class="text-left" rowspan="1" colspan="1">0‑15</td>
+              <td class="text-left" rowspan="1" colspan="1">Fixed block reserved by RFC9602 for SRv6 locators</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">D</td>
+              <td class="text-left" rowspan="1" colspan="1">16‑19</td>
+              <td class="text-left" rowspan="1" colspan="1">Domain‑ID — up to 15 SRv6 domains (0x1…0xF)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">R</td>
+              <td class="text-left" rowspan="1" colspan="1">20‑23</td>
+              <td class="text-left" rowspan="1" colspan="1">Region‑ID — up to 15 regions per domain (0x1…0xF)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">FA</td>
+              <td class="text-left" rowspan="1" colspan="1">24‑31</td>
+              <td class="text-left" rowspan="1" colspan="1">IGP Flexible‑Algorithm identifier</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">ST</td>
+              <td class="text-left" rowspan="1" colspan="1">32‑39</td>
+              <td class="text-left" rowspan="1" colspan="1">Site‑seT; even = GIB, odd = LIB</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">NN</td>
+              <td class="text-left" rowspan="1" colspan="1">40‑47</td>
+              <td class="text-left" rowspan="1" colspan="1">Node‑ID — uniquely identifies one router (/48)</td>
+            </tr>
+          </tbody>
+        </table>
 <p id="section-5.2-4">Planning tip: single‑domain or flat‑region deployments may set D and/or
 R to 0x0; masks still summarise cleanly. ISPs can subdivide further—for
 example using the lower nibble of Flex‑Algo as a sub‑region key—while
@@ -1546,8 +1580,8 @@ keeping summaries on nibble boundaries.<a href="#section-5.2-4" class="pilcrow">
    is only useful if <em>each layer advertises exactly one summary into the
    layer above</em>.  The guiding rule is <strong>summarise at every 8‑bit field
    boundary</strong> so the mask aligns to a full byte.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<table class="center" id="table-2">
-        <caption><a href="#table-2" class="selfRef">Table 2</a></caption>
+<table class="center" id="table-3">
+        <caption><a href="#table-3" class="selfRef">Table 3</a></caption>
 <thead>
           <tr>
             <th class="text-left" rowspan="1" colspan="1">Topology Scope</th>
@@ -1568,7 +1602,7 @@ keeping summaries on nibble boundaries.<a href="#section-5.2-4" class="pilcrow">
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">Single node.</td>
-            <td class="text-left" rowspan="1" colspan="1">/48.</td>
+            <td class="text-left" rowspan="1" colspan="1">/48</td>
             <td class="text-left" rowspan="1" colspan="1">Node (NN)</td>
           </tr>
         </tbody>
