@@ -148,12 +148,15 @@ informative:
    reveals the Domain, Region, Flex‑Algo, Set and Node values without a
    lookup table.
 
+```
+Nibbles (4 bits)
     0             15             31             47          63
     |             |              |              |           |
     +-------+-------+-------+-------+-------+-------+----------+
     |  fd   |   D   |  Reg  |   FA  |   ST  |   NN  | host‑64  |
     +-------+-------+-------+-------+-------+-------+----------+
          <-----------  network / locator (48 bits) ---------->|
+```
 
 Field | Bits | Purpose
 ------|------|---------------------------------------------------------
@@ -163,8 +166,6 @@ Reg   |16‑23 | **Region‑ID - groups Sites that share latency goals** 
 FA    |24‑31 | **Flex‑Algo identifier**
 ST    |32‑39 | **Site-seT - Site identifer per PoP**
 NN    |40‑47 | **Node‑ID** - uniquely itentifies nodes(/48 locator)**
-
-Smaller networks: set D and/or Reg to 0x00; masks still summarise.
 
    *Smaller networks:* Operators that do not require multiple domains or
    regional partitions can leave **Domain‑ID** and/or **Region‑ID** set
