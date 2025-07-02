@@ -8,9 +8,6 @@ Intended status: Informational                          Deutsche Telekom
 Expires: 3 January 2026                                        N. Morris
                                                          VerizonWireless
                                                             S. Al-kokhon
-                                                                        
-                                                                D. Voyer
-                                                           Cisco Systems
                                                              2 July 2025
 
 
@@ -465,8 +462,3 @@ Authors' Addresses
 
    Sara Al-kokhon
    Email: sara.al-Kokhon@bell.ca
-
-
-   Daniel Voyer
-   Cisco Systems
-   Email: davoyer@cisco.com
