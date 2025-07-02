@@ -1679,6 +1679,14 @@ Site- and Node-level prefixes under Region 05 but denies anything
 outside. Maintaining ACLs at each Region border is therefore
 straightforward and less error-prone than arbitrary masks.<a href="#section-9-2.1.1" class="pilcrow">¶</a></p>
 </li>
+        <li class="normal" id="section-9-2.2">
+          <p id="section-9-2.2.1">Locator→Loopback Consistency Checks
+Loopbacks derive directly from the /48 locator (e.g., fd00:0500:0A13::1). If
+an operator misassigns a locator, a simple script can detect mismatches
+between the advertised /48 and the loopback’s low-order 32-bit value. This
+check helps prevent accidental duplicate identifiers that could be
+exploited for spoofing.<a href="#section-9-2.2.1" class="pilcrow">¶</a></p>
+</li>
       </ul>
 <p id="section-9-3">By combining byte-aligned summarization with simple ACL rules at Region or
    Site boundaries, operators can enforce strict filtering with minimal complexity,
