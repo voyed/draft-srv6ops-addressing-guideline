@@ -1229,7 +1229,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
             <p id="section-toc.1-1.13.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
@@ -1671,23 +1671,21 @@ locator0 (0A13:0B00:0000) → System-ID = 0A13.0B00.00<a href="#section-8.1-2.3.
 boundaries—and operators should leverage them to minimize security risk:<a href="#section-9-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-9-2.1">
-          <p id="section-9-2.1.1">Byte-Aligned Summaries as ACL Anchors<a href="#section-9-2.1.1" class="pilcrow">¶</a></p>
-<p id="section-9-2.1.2">
+          <p id="section-9-2.1.1">Byte-Aligned Summaries as ACL Anchors
 Because locators and summaries align on full-byte boundaries (e.g.,
 /32 for Region, /48 for Site), ACLs can match on these exact prefixes.
 For example, an ACL permitting fd00:0500::/32 automatically allows all
 Site- and Node-level prefixes under Region 05 but denies anything
 outside. Maintaining ACLs at each Region border is therefore
-straightforward and less error-prone than arbitrary masks.<a href="#section-9-2.1.2" class="pilcrow">¶</a></p>
+straightforward and less error-prone than arbitrary masks.<a href="#section-9-2.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-9-2.2">
-          <p id="section-9-2.2.1">Locator→Loopback Consistency Checks<a href="#section-9-2.2.1" class="pilcrow">¶</a></p>
-<p id="section-9-2.2.2">
+          <p id="section-9-2.2.1">Locator→Loopback Consistency Checks
 Loopbacks derive directly from the /48 locator (e.g., fd00:0500:0A13::1). If
 an operator misassigns a locator, a simple script can detect mismatches
 between the advertised /48 and the loopback’s low-order 32-bit value. This
 check helps prevent accidental duplicate identifiers that could be
-exploited for spoofing.<a href="#section-9-2.2.2" class="pilcrow">¶</a></p>
+exploited for spoofing.<a href="#section-9-2.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-9-2.3">
           <p id="section-9-2.3.1">Logging and Periodic Audits
@@ -1709,7 +1707,7 @@ compromise security.<a href="#section-9-2.3.1" class="pilcrow">¶</a></p>
       <h2 id="name-iana-considerations">
 <a href="#section-10" class="section-number selfRef">10. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-10-1">This document has no IANA actions.<a href="#section-10-1" class="pilcrow">¶</a></p>
+<p id="section-10-1">TBD<a href="#section-10-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-normative-references">
@@ -1732,8 +1730,9 @@ compromise security.<a href="#section-9-2.3.1" class="pilcrow">¶</a></p>
 <div id="acknowledgments">
 <section id="appendix-A">
       <h2 id="name-acknowledgments">
-<a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
-    </h2>
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
+      </h2>
+<p id="appendix-A-1">TBD<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">

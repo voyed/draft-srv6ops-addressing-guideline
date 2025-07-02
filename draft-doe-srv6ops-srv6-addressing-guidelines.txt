@@ -93,7 +93,7 @@ Table of Contents
    9.  Security Considerations
    10. IANA Considerations
    11. Normative References
-   Acknowledgments
+   Appendix A.  Acknowledgments
    Author's Address
 
 1.  Introduction
@@ -390,24 +390,20 @@ Table of Contents
    boundaries—and operators should leverage them to minimize security
    risk:
 
-   *  Byte-Aligned Summaries as ACL Anchors
+   *  Byte-Aligned Summaries as ACL Anchors Because locators and
+      summaries align on full-byte boundaries (e.g., /32 for Region, /48
+      for Site), ACLs can match on these exact prefixes.  For example,
+      an ACL permitting fd00:0500::/32 automatically allows all Site-
+      and Node-level prefixes under Region 05 but denies anything
+      outside.  Maintaining ACLs at each Region border is therefore
+      straightforward and less error-prone than arbitrary masks.
 
-      Because locators and summaries align on full-byte boundaries
-      (e.g., /32 for Region, /48 for Site), ACLs can match on these
-      exact prefixes.  For example, an ACL permitting fd00:0500::/32
-      automatically allows all Site- and Node-level prefixes under
-      Region 05 but denies anything outside.  Maintaining ACLs at each
-      Region border is therefore straightforward and less error-prone
-      than arbitrary masks.
-
-   *  Locator→Loopback Consistency Checks
-
-      Loopbacks derive directly from the /48 locator (e.g.,
-      fd00:0500:0A13::1).  If an operator misassigns a locator, a simple
-      script can detect mismatches between the advertised /48 and the
-      loopback’s low-order 32-bit value.  This check helps prevent
-      accidental duplicate identifiers that could be exploited for
-      spoofing.
+   *  Locator→Loopback Consistency Checks Loopbacks derive directly from
+      the /48 locator (e.g., fd00:0500:0A13::1).  If an operator
+      misassigns a locator, a simple script can detect mismatches
+      between the advertised /48 and the loopback’s low-order 32-bit
+      value.  This check helps prevent accidental duplicate identifiers
+      that could be exploited for spoofing.
 
    *  Logging and Periodic Audits Log locator assignments and summary
       changes at each aggregation level.  Periodically audit ACLs to
@@ -423,7 +419,7 @@ Table of Contents
 
 10.  IANA Considerations
 
-   This document has no IANA actions.
+   TBD
 
 11.  Normative References
 
@@ -436,7 +432,9 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-Acknowledgments
+Appendix A.  Acknowledgments
+
+   TBD
 
 Author's Address
 
