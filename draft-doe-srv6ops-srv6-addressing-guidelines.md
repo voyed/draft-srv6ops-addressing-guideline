@@ -44,7 +44,7 @@ author:
  -
    fullname: Daniel Voyer
    organization: Cisco Systems
-   email: davoyer@ciscol.com
+   email: davoyer@cisco.com
 
 normative:
 
