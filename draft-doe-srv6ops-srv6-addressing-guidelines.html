@@ -1386,19 +1386,16 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 |  fd   |   D   |  Reg  |   FA  |   ST  |   NN  | host‑64  |
 +-------+-------+-------+-------+-------+-------+----------+
      &lt;-----------  network / locator (48 bits) ----------&gt;|
-
-      fd : ULA prefix (fd00::/8) keeps locators private
 </pre><a href="#section-5.1-2" class="pilcrow">¶</a>
 </div>
 <p id="section-5.1-3">Field  Bits   Purpose
 -----  -----  ---------------------------------------------
-fd     0‑7    ULA prefix (fd00::/8) keeps infrastructure off
-              the public Internet
-D      8‑15   Domain‑ID – up to 256 autonomous domains
-Reg    16‑23  Region‑ID – groups Sites that share latency goals
-FA     24‑31  IGP Flexible‑Algorithm identifier
-ST     32‑39  Site-set; even = GIB, odd = LIB
-NN     40‑47  Node‑ID – uniquely identifies one router (/48)<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+fd     0‑7    <strong>ULA prefix (fd00::/8) keeps locators private</strong>
+D      8‑15   <strong>Domain‑ID – up to 256 autonomous domains</strong>
+Reg    16‑23  <strong>Region‑ID – groups Sites that share latency goals</strong>
+FA     24‑31  <strong>IGP Flexible‑Algorithm identifier</strong>
+ST     32‑39  <strong>Site-seT; even = GIB, odd = LIB</strong>
+NN     40‑47  <strong>Node‑ID – uniquely identifies one router (/48)</strong><a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.1-4">Smaller networks: set D and/or Reg to 0x00; masks still summarise.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 <p id="section-5.1-5"><em>Smaller networks:</em> Operators that do not require multiple domains or
    regional partitions can leave <strong>Domain‑ID</strong> and/or <strong>Region‑ID</strong> set
