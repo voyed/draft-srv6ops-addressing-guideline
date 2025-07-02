@@ -7,7 +7,7 @@ Internet-Draft                                              M. Horneffer
 Intended status: Informational                          Deutsche Telekom
 Expires: 3 January 2026                                        N. Morris
                                                          VerizonWireless
-                                                            S. Al-kokhon
+                                                               C. Hassan
                                                              Bell Canada
                                                                 D. Voyer
                                                            Cisco Systems
@@ -498,9 +498,9 @@ Authors' Addresses
    Email: nicklous.morris@verizonwireless.com
 
 
-   Sara Al-kokhon
+   Clayton Hassan
    Bell Canada
-   Email: sara.al-Kokhon@bell.ca
+   Email: clayton.hassan@bell.ca
 
 
    Daniel Voyer
