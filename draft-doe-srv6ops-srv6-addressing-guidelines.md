@@ -317,6 +317,13 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
 The hierarchical IP addressing plan proposed here offers natural ACL
 boundaries—and operators should leverage them to minimize security risk:
 
+ * Byte-Aligned Summaries as ACL Anchors
+   Because locators and summaries align on full-byte boundaries (e.g.,
+   /32 for Region, /48 for Site), ACLs can match on these exact prefixes.
+   For example, an ACL permitting fd00:0500::/32 automatically allows all
+   Site- and Node-level prefixes under Region 05 but denies anything
+   outside. Maintaining ACLs at each Region border is therefore
+   straightforward and less error-prone than arbitrary masks.
 
 
 By combining byte-aligned summarization with simple ACL rules at Region or
