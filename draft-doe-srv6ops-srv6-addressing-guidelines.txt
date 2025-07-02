@@ -196,12 +196,11 @@ Table of Contents
    address reveals the Domain, Region, Flex-Algo, Set and Node values
    without a lookup table.
 
-   0             15             31             47          63
-   |             |              |              |           |
+   Nibbles (4 bits) 0 15 31 47 63 | | | | |
+   +-------+-------+-------+-------+-------+-------+----------+ | fd |
+   D | Reg | FA | ST | NN | host-64 |
    +-------+-------+-------+-------+-------+-------+----------+
-   |  fd   |   D   |  Reg  |   FA  |   ST  |   NN  | host-64  |
-   +-------+-------+-------+-------+-------+-------+----------+
-        <-----------  network / locator (48 bits) ---------->|
+   <----------- network / locator (48 bits) ---------->|
 
       +=======+=======+=============================================+
       | Field | Bits  | Purpose                                     |
@@ -222,8 +221,6 @@ Table of Contents
       +-------+-------+---------------------------------------------+
 
                                   Table 1
-
-   Smaller networks: set D and/or Reg to 0x00; masks still summarise.
 
    _Smaller networks:_ Operators that do not require multiple domains or
    regional partitions can leave *Domain-ID* and/or *Region-ID* set to
