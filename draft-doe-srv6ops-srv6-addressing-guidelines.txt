@@ -3,7 +3,7 @@
 
 
 SRv6 Operations                                                 D. Voyer
-Internet-Draft                                                     Cisco
+Internet-Draft                                             Cisco Systems
 Intended status: Informational                               2 July 2025
 Expires: 3 January 2026
 
@@ -399,12 +399,14 @@ Table of Contents
       Region border is therefore straightforward and less error-prone
       than arbitrary masks.
 
-   *  Locator->Loopback Consistency Checks Loopbacks derive directly
-      from the /48 locator, e.g., fd00:0500:0a13::1.  If an operator
-      misassings a locator, a simple script can detect mismatches
-      between the advertised /48 and the loopback's low-order 32-bit
-      value.  This check helps prevent accidental duplicate identifiers
-      that could be exploited for spoofing.
+   *  Locator->Loopback Consistency Checks
+
+      Loopbacks derive directly from the /48 locator, e.g.,
+      fd00:0500:0a13::1.  If an operator misassings a locator, a simple
+      script can detect mismatches between the advertised /48 and the
+      loopback's low-order 32-bit value.  This check helps prevent
+      accidental duplicate identifiers that could be exploited for
+      spoofing.
 
    *  Logging and Periodic Audits
 
@@ -441,5 +443,5 @@ Appendix A.  Acknowledgments
 Author's Address
 
    Daniel Voyer
-   Cisco
+   Cisco Systems
    Email: davoyer@cisco.com
