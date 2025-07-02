@@ -39,8 +39,12 @@ author:
     email: nicklous.morris@verizonwireless.com
  -
     fullname: Sara Al-kokhon
-    organiation: Bell Canada
+    organization: Bell Canada
     email: sara.al-Kokhon@bell.ca
+ -
+   fullname: Daniel Voyer
+   organization: Cisco Systems
+   email: davoyer@ciscol.com
 
 normative:
 
