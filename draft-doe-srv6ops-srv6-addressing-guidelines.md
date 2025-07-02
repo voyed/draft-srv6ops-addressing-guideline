@@ -149,6 +149,7 @@ informative:
    lookup table.
 
 Nibbles (4 bits)
+
     0             15             31             47          63
     |             |              |              |           |
     +-------+-------+-------+-------+-------+-------+----------+
@@ -175,8 +176,9 @@ NN    |40‑47 | **Node‑ID** - uniquely itentifies nodes(/48 locator)**
    Under *5F00::/16*, the first 16 bits are fixed.  The locator therefore
    pushes the hierarchy one half‑byte to the right:
 
-Nibbles (4 bits)                      host part
- 0   1   2     3       4      5      6‑15
+Nibbles (4 bits)
+                      
+ 0   1   2     3       4      5      6‑15   host part
 +----+----+-----+------+-------+----+----------------+
 | 5F | 00 |  D  |  R  |  FA   | ST |  NN  |  host64  |
 +----+----+-----+------+-------+----+----------------+
