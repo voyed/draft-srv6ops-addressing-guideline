@@ -38,9 +38,9 @@ author:
     organization: VerizonWireless
     email: nicklous.morris@verizonwireless.com
  -
-    fullname: Sara Al-kokhon
+    fullname: Clayton Hassan
     organization: Bell Canada
-    email: sara.al-Kokhon@bell.ca
+    email: clayton.hassan@bell.ca
  -
    fullname: Daniel Voyer
    organization: Cisco Systems
