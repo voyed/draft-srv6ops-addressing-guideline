@@ -1451,8 +1451,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-locator-structure-for-rfc-9">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-locator-structure-for-rfc-9" class="section-name selfRef">Locator Structure for RFC 9602 (5f00::/16-model)</a>
         </h3>
-<p id="section-5.2-1">RFC 9602 reserves 5F00::/16 for SRv6 operator locators.  With the first
-two bytes fixed (5F 00), the hierarchy shifts half a byte to the right:
+<p id="section-5.2-1">RFC 9602 reserves 5f00::/16 for SRv6 operator locators.  With the first
+two bytes fixed (5f 00), the hierarchy shifts half a byte to the right:
 Domain‑ID and Region‑ID now share the third byte, while the downstream
 fields remain byte‑aligned.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5.2-2">
@@ -1466,7 +1466,7 @@ fields remain byte‑aligned.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
                         |  |                                   |
                         |  +-- Region‑ID (4 bits)              |
                         +----- Domain‑ID (4 bits)              |
-                                    &lt;---- network /48 -----&gt;---+
+&lt;------------------------ network / locator (48 bits) -----&gt;---+
 </pre><a href="#section-5.2-2" class="pilcrow">¶</a>
 </div>
 <p id="section-5.2-3">Field  Bits   Purpose
@@ -1475,7 +1475,7 @@ fields remain byte‑aligned.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 D      16‑19  Domain‑ID — up to 15 SRv6 domains (0x1…0xF)
 R      20‑23  Region‑ID — up to 15 regions per domain (0x1…0xF)
 FA     24‑31  IGP Flexible‑Algorithm identifier
-ST     32‑39  Site‑set; even = GIB, odd = LIB
+ST     32‑39  Site‑seT; even = GIB, odd = LIB
 NN     40‑47  Node‑ID — uniquely identifies one router (/48)<a href="#section-5.2-3" class="pilcrow">¶</a></p>
 <p id="section-5.2-4">Planning tip: single‑domain or flat‑region deployments may set D and/or
 R to 0x0; masks still summarise cleanly. ISPs can subdivide further—for
