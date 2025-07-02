@@ -148,7 +148,6 @@ informative:
    reveals the Domain, Region, Flex‑Algo, Set and Node values without a
    lookup table.
 
-```
 Nibbles (4 bits)
     0             15             31             47          63
     |             |              |              |           |
@@ -156,7 +155,6 @@ Nibbles (4 bits)
     |  fd   |   D   |  Reg  |   FA  |   ST  |   NN  | host‑64  |
     +-------+-------+-------+-------+-------+-------+----------+
          <-----------  network / locator (48 bits) ---------->|
-```
 
 Field | Bits | Purpose
 ------|------|---------------------------------------------------------
@@ -177,14 +175,12 @@ NN    |40‑47 | **Node‑ID** - uniquely itentifies nodes(/48 locator)**
    Under *5F00::/16*, the first 16 bits are fixed.  The locator therefore
    pushes the hierarchy one half‑byte to the right:
 
-```
 Nibbles (4 bits)                      host part
  0   1   2     3       4      5      6‑15
 +----+----+-----+------+-------+----+----------------+
 | 5F | 00 |  D  |  R  |  FA   | ST |  NN  |  host64  |
 +----+----+-----+------+-------+----+----------------+
 Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
-```
 
    * D  (Domain‑ID) – 4 bits → up to **15 domains** (0x1‑0xF)
    * R  (Region‑ID) – 4 bits → **15 regions** per domain (0x1‑0xF)
