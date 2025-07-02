@@ -1378,15 +1378,13 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
    hierarchy described in Section 4.  Reading the hexadecimal address
    reveals the Domain, Region, Flex‑Algo, Set and Node values without a
    lookup table.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1-2"><code>
-Nibbles (4 bits)
+<p id="section-5.1-2">Nibbles (4 bits)
     0             15             31             47          63
     |             |              |              |           |
     +-------+-------+-------+-------+-------+-------+----------+
     |  fd   |   D   |  Reg  |   FA  |   ST  |   NN  | host‑64  |
     +-------+-------+-------+-------+-------+-------+----------+
-         &lt;-----------  network / locator (48 bits) ----------&gt;|
-</code><a href="#section-5.1-2" class="pilcrow">¶</a></p>
+         &lt;-----------  network / locator (48 bits) ----------&gt;|<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 <table class="center" id="table-1">
           <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
 <thead>
@@ -1451,14 +1449,12 @@ Nibbles (4 bits)
         </h3>
 <p id="section-5.2-1">Under <em>5F00::/16</em>, the first 16 bits are fixed.  The locator therefore
    pushes the hierarchy one half‑byte to the right:<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2-2"><code>
-Nibbles (4 bits)                      host part
+<p id="section-5.2-2">Nibbles (4 bits)                      host part
  0   1   2     3       4      5      6‑15
 +----+----+-----+------+-------+----+----------------+
 | 5F | 00 |  D  |  R  |  FA   | ST |  NN  |  host64  |
 +----+----+-----+------+-------+----+----------------+
-Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
-</code><a href="#section-5.2-2" class="pilcrow">¶</a></p>
+Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47<a href="#section-5.2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5.2-3.1">
             <p id="section-5.2-3.1.1">D  (Domain‑ID) – 4 bits → up to <strong>15 domains</strong> (0x1‑0xF)<a href="#section-5.2-3.1.1" class="pilcrow">¶</a></p>
