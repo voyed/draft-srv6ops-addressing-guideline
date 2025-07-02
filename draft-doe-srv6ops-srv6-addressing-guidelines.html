@@ -1345,7 +1345,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       </h2>
 <p id="section-5-1">This section converts theory into byte boundaries, showing exactly
    <strong>how</strong> IPv6 bit‑richness is partitioned into a multi‑level hierarchy
-   (Global‑ID → Region → Flex‑Algo → Site‑Set → Node).<a href="#section-5-1" class="pilcrow">¶</a></p>
+   (Global‑ID → Region → Flex‑Algo → Site‑seT → Node).<a href="#section-5-1" class="pilcrow">¶</a></p>
 <p id="section-5-2">The 128‑bit SRv6 locator is split into a 64‑bit <em>network</em> part and a
    64‑bit <em>host</em> part.  The network part encodes Domain‑ID, Region‑ID,
    Flex‑Algo, Set and Node‑ID in byte‑aligned fields.<a href="#section-5-2" class="pilcrow">¶</a></p>
@@ -1405,7 +1405,7 @@ Bits 0‑7 8‑15 16‑23 24‑31 32‑39 40‑47   (host part)
               <td class="text-left" rowspan="1" colspan="1">ST</td>
               <td class="text-left" rowspan="1" colspan="1">32‑39</td>
               <td class="text-left" rowspan="1" colspan="1">
-                <strong>Set (ST)</strong>
+                <strong>Site-seT (ST)</strong>
 </td>
             </tr>
             <tr>
@@ -1451,7 +1451,7 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
             <p id="section-5.2-3.4.1">ST / NN – identical meaning as in Section 4.1<a href="#section-5.2-3.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-5.2-4">Because the first two bytes are locked (<em>5F00</em>), Domain and Region
+<p id="section-5.2-4">Because the first two bytes are locked (<em>5f00</em>), Domain and Region
    live in the third byte.  Flex‑Algo retains a full byte so existing
    deployments need no change.  ISPs can subdivide further—for example
    using the lower nibble of Flex‑Algo as a sub‑region key—while keeping
@@ -1465,7 +1465,7 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
       <h2 id="name-deployment-profiles">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-deployment-profiles" class="section-name selfRef">Deployment Profiles</a>
       </h2>
-<p id="section-6-1">The Set (SS) byte lets planners scale by powers of 256: <strong>one even Set
+<p id="section-6-1">The Site-seT (ST) byte lets planners scale by powers of 256: <strong>one even Set
    supports up to 256 node locators</strong>.  Sizing logic:<a href="#section-6-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-6-2">
 <pre>
@@ -1495,7 +1495,7 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
           <h4 id="name-medium-site-315-routers">
 <a href="#section-6.1.2" class="section-number selfRef">6.1.2. </a><a href="#name-medium-site-315-routers" class="section-name selfRef">Medium Site – 315 routers</a>
           </h4>
-<p id="section-6.1.2-1">• Sets 0x0A00–0x0A10 → fd00:0500:0a00::/39
+<p id="section-6.1.2-1">• Sets 0x0A00–0x0a10 → fd00:0500:0a00::/39
    • <strong>Summary injected into L2:</strong> fd00:0500:0a00::/39<a href="#section-6.1.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1571,7 +1571,7 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
 <div class="alignLeft art-text artwork" id="section-8-2">
 <pre>
  • Region‑ID 0x05, Flex‑Algo 0
- • Set 0x0A10, Node 0x13B
+ • Set 0x0a10, Node 0x13b
  • locator0 → **fd00:0500:0a13::/48**
  • L2 summary → **fd00:0500:0a00::/39**
 </pre><a href="#section-8-2" class="pilcrow">¶</a>
@@ -1592,7 +1592,7 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
                 <p id="section-8.1-2.1.2.1.1">Region-ID = 0x05, Flex-Algo = 0x00<a href="#section-8.1-2.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-8.1-2.1.2.2">
-                <p id="section-8.1-2.1.2.2.1">ST = 0x0A, Node-ID = 0x13B (hex)<a href="#section-8.1-2.1.2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-8.1-2.1.2.2.1">ST = 0x0a, Node-ID = 0x13a (hex)<a href="#section-8.1-2.1.2.2.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-8.1-2.1.2.3">
                 <p id="section-8.1-2.1.2.3.1">locator0 = fd00:0500:0a13::/48<a href="#section-8.1-2.1.2.3.1" class="pilcrow">¶</a></p>
