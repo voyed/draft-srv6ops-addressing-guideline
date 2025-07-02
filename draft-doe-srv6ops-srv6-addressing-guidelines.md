@@ -122,12 +122,12 @@ informative:
    hierarchy that scales smoothly from small POPs to continental C‑SID
    domains.
 
-   * *G1: – Scalable Aggregation* ≤ 3 new routes in the core after any
+   * G1: – Scalable Aggregation* ≤ 3 new routes in the core after any
    failure.
-   * *G2: – Per‑Node /48 Locator* Preserves /64 for services and /96 for
+   * G2: – Per‑Node /48 Locator* Preserves /64 for services and /96 for
    locals while capping FIB size.
-   * *G3: – Flex‑Algo Plane Parity* Bit positions identical across planes.
-   * *G4: – Global vs Local Split* Even Sets = Global C‑SIDs, odd Sets =
+   * G3: – Flex‑Algo Plane Parity* Bit positions identical across planes.
+   * G4: – Global vs Local Split* Even Sets = Global C‑SIDs, odd Sets =
    Local C‑SIDs.
 
 
