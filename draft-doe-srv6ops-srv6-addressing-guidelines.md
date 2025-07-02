@@ -284,12 +284,12 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
  * Example (Medium Site from Section 5.1.2):
      * Region-ID = 0x05, Flex-Algo = 0x00
      * ST = 0x0A, Node-ID = 0x13B (hex)
-     * locator0 = fd00:0500:0A13::/48
-     * L1 summary = fd00:0500:0A00::/39
+     * locator0 = fd00:0500:0a13::/48
+     * L1 summary = fd00:0500:0a00::/39
 
 * Loopback:
      * Rule: Loopback = locator0 + ::1/128 from locator0.
-     * Example: fd00:0500:0A13::1/128
+     * Example: fd00:0500:0a13::1/128
      * Because this resides inside the /48 advertised by IS-IS, no additional
        loopback prefix is needed (reduces FIB noise)
 
@@ -297,14 +297,14 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
      * Format: 49.Area-ID.System-ID.00
      * Area-ID: Operator-defined (e.g., area 10)
      * System-ID: Last three bytes of locator0, nibble-grouped:
-       locator0 (0A13:0B00:0000) → System-ID = 0A13.0B00.00
-     * NET-ID = 49.10.0A13.0B00.00
+       locator0 (0a13:0B00:0000) → System-ID = 0a13.0B00.00
+     * NET-ID = 49.10.0a13.0B00.00
 
 * Router-ID (BGP & IS-IS):
      * Method: Use lower 32 bits of loopback, rendered in dotted-decimal.
-     * Loopback low-32 bits = 0x00000A13 → 0.0.10.19
+     * Loopback low-32 bits = 0x00000a13 → 0.0.10.19
      * BGP Router-ID = 0.0.10.19
-     * IS-IS System-ID (48-bit alt) = 0000.0A13.0000
+     * IS-IS System-ID (48-bit alt) = 0000.0a13.0000
 
  Note: Mismatches between locator0, loopback, and router-ID indicate
    configuration typos and aid in audits.
@@ -325,7 +325,7 @@ boundaries—and operators should leverage them to minimize security risk:
       straightforward and less error-prone than arbitrary masks.
 
  * Locator->Loopback Consistency Checks
-      Loopbacks derive directly from the /48 locator (e.g., fd00:0500:0a13::1). If
+      Loopbacks derive directly from the /48 locator. If
       an operator misassings a locator, a simple script can detect mismatches
       between the advertised /48 and the loopback's low-order 32-bit value. This 
       check helps prevent accidental duplicate identifiers that could be exploited
