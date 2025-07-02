@@ -203,13 +203,23 @@ Table of Contents
    +-------+-------+-------+-------+-------+-------+----------+
         <-----------  network / locator (48 bits) ---------->|
 
-   Field Bits Purpose ----- -----
-   --------------------------------------------- fd 0-7 *ULA prefix
-   (fd00::/8) keeps locators private* D 8-15 *Domain-ID – up to 256
-   autonomous domains* Reg 16-23 *Region-ID – groups Sites that share
-   latency goals* FA 24-31 *IGP Flexible-Algorithm identifier* ST 32-39
-   *Site-seT; even = GIB, odd = LIB* NN 40-47 *Node-ID – uniquely
-   identifies one router (/48)*
+          +=======+=======+=====================================+
+          | Field | Bits  | Purpose                             |
+          +=======+=======+=====================================+
+          | fd    | 0-7   | *ULA prefix keeps locators private* |
+          +-------+-------+-------------------------------------+
+          | D     | 8-15  | *Domain-ID*                         |
+          +-------+-------+-------------------------------------+
+          | Reg   | 16-23 | *Region-ID*                         |
+          +-------+-------+-------------------------------------+
+          | FA    | 24-31 | *Flex-Algo*                         |
+          +-------+-------+-------------------------------------+
+          | ST    | 32-39 | *Site-seT (ST)*                     |
+          +-------+-------+-------------------------------------+
+          | NN    | 40-47 | *Node-ID* (/48 locator)             |
+          +-------+-------+-------------------------------------+
+
+                                  Table 1
 
    Smaller networks: set D and/or Reg to 0x00; masks still summarise.
 

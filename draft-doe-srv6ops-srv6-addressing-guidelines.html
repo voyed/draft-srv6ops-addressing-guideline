@@ -1388,14 +1388,57 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
      &lt;-----------  network / locator (48 bits) ----------&gt;|
 </pre><a href="#section-5.1-2" class="pilcrow">¶</a>
 </div>
-<p id="section-5.1-3">Field  Bits   Purpose
------  -----  ---------------------------------------------
-fd     0‑7    <strong>ULA prefix (fd00::/8) keeps locators private</strong>
-D      8‑15   <strong>Domain‑ID – up to 256 autonomous domains</strong>
-Reg    16‑23  <strong>Region‑ID – groups Sites that share latency goals</strong>
-FA     24‑31  <strong>IGP Flexible‑Algorithm identifier</strong>
-ST     32‑39  <strong>Site-seT; even = GIB, odd = LIB</strong>
-NN     40‑47  <strong>Node‑ID – uniquely identifies one router (/48)</strong><a href="#section-5.1-3" class="pilcrow">¶</a></p>
+<table class="center" id="table-1">
+          <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Field</th>
+              <th class="text-left" rowspan="1" colspan="1">Bits</th>
+              <th class="text-left" rowspan="1" colspan="1">Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">fd</td>
+              <td class="text-left" rowspan="1" colspan="1">0‑7</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>ULA prefix keeps locators private</strong>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">D</td>
+              <td class="text-left" rowspan="1" colspan="1">8‑15</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>Domain‑ID</strong> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Reg</td>
+              <td class="text-left" rowspan="1" colspan="1">16‑23</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>Region‑ID</strong> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">FA</td>
+              <td class="text-left" rowspan="1" colspan="1">24‑31</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>Flex‑Algo</strong>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">ST</td>
+              <td class="text-left" rowspan="1" colspan="1">32‑39</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>Site-seT (ST)</strong>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">NN</td>
+              <td class="text-left" rowspan="1" colspan="1">40‑47</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>Node‑ID</strong> (/48 locator)</td>
+            </tr>
+          </tbody>
+        </table>
 <p id="section-5.1-4">Smaller networks: set D and/or Reg to 0x00; masks still summarise.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 <p id="section-5.1-5"><em>Smaller networks:</em> Operators that do not require multiple domains or
    regional partitions can leave <strong>Domain‑ID</strong> and/or <strong>Region‑ID</strong> set
