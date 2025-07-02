@@ -51,9 +51,9 @@ informative:
    backbones of up to 50 000 nodes.  It specifies a compressed Segment
    Identifier (C‑SID) locator structure (F3216) that encodes Flex‑Algo,
    Region‑ID, Site‑ID and Node‑ID inside a fixed /48 locator while
-   leaving space for Local and Global C‑SIDs. The aim is to accelerate brown‑field SRv6 migrations by offering
-   deterministic field carving, summarisation rules and actionable
-   operational guidance.
+   leaving space for Local and Global C‑SIDs. The aim is to accelerate 
+   brown‑field SRv6 migrations by offering deterministic field carving, 
+   summarisation rules and actionable operational guidance.
 
 
 --- middle
@@ -79,7 +79,8 @@ informative:
    spoofing.  A Global‑Unicast scheme is possible but demands airtight
    RPKI and strict ingress filters; it is therefore *NOT RECOMMENDED*
    unless strong business drivers outweigh the risk. RFC9602 specifies
-   *5F00::/16* for operators willing to deploy new strict at their border and edge ACLs ROA is also a viable option.
+   *5f00::/16* for operators willing to deploy new strict at their border 
+   and edge ACLs ROA is also a viable option.
 
    The **C‑SID** paradigm compresses 16‑bit Segment Identifiers inside a
    /48 locator—balancing header overhead with FIB scale while allowing
