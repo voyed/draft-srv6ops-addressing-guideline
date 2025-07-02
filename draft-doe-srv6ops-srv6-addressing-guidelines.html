@@ -1378,13 +1378,16 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
    hierarchy described in Section 4.  Reading the hexadecimal address
    reveals the Domain, Region, Flex‑Algo, Set and Node values without a
    lookup table.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1-2">Nibbles (4 bits)
-    0             15             31             47          63
-    |             |              |              |           |
-    +-------+-------+-------+-------+-------+-------+----------+
-    |  fd   |   D   |  Reg  |   FA  |   ST  |   NN  | host‑64  |
-    +-------+-------+-------+-------+-------+-------+----------+
-         &lt;-----------  network / locator (48 bits) ----------&gt;|<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5.1-2">
+<pre>
+0             15             31             47          63
+|             |              |              |           |
++-------+-------+-------+-------+-------+-------+----------+
+|  fd   |   D   |  Reg  |   FA  |   ST  |   NN  | host‑64  |
++-------+-------+-------+-------+-------+-------+----------+
+     &lt;-----------  network / locator (48 bits) ----------&gt;|
+</pre><a href="#section-5.1-2" class="pilcrow">¶</a>
+</div>
 <table class="center" id="table-1">
           <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
 <thead>

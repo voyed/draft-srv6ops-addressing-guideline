@@ -196,11 +196,12 @@ Table of Contents
    address reveals the Domain, Region, Flex-Algo, Set and Node values
    without a lookup table.
 
-   Nibbles (4 bits) 0 15 31 47 63 | | | | |
-   +-------+-------+-------+-------+-------+-------+----------+ | fd |
-   D | Reg | FA | ST | NN | host-64 |
+   0             15             31             47          63
+   |             |              |              |           |
    +-------+-------+-------+-------+-------+-------+----------+
-   <----------- network / locator (48 bits) ---------->|
+   |  fd   |   D   |  Reg  |   FA  |   ST  |   NN  | host-64  |
+   +-------+-------+-------+-------+-------+-------+----------+
+        <-----------  network / locator (48 bits) ---------->|
 
       +=======+=======+=============================================+
       | Field | Bits  | Purpose                                     |
