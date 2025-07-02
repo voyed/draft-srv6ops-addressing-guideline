@@ -148,6 +148,7 @@ informative:
    reveals the Domain, Region, Flex‑Algo, Set and Node values without a
    lookup table.
 
+Nibbles (4 bits)
 
     0             15             31             47          63
     |             |              |              |           |
