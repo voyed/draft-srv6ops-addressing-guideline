@@ -170,7 +170,7 @@ Bits 0‑7 8‑15 16‑23 24‑31 32‑39 40‑47   (host part)
    to `0x00`.  The byte‑aligned masks still summarise cleanly, and all
    downstream fields remain valid.
 
-## Locator Structure for RFC 9602 (5F00::/16-model)
+## Locator Structure for RFC 9602 (5f00::/16-model)
 
    Under *5F00::/16*, the first 16 bits are fixed.  The locator therefore
    pushes the hierarchy one half‑byte to the right:
@@ -277,7 +277,7 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
    were traditionally filled with an IPv4 loopback.  Deriving these
    values **directly from the hierarchical locator0** eliminates manual
    spreadsheets and guarantees internal consistency.  The examples below
-   use the *medium‑site* case from Section 5.1.2:
+   use the *medium‑site* case from Section 5.1:
 
      • Region‑ID 0x05, Flex‑Algo 0
      • Set 0x0a10, Node 0x13b
