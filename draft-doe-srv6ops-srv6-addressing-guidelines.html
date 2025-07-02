@@ -1546,13 +1546,13 @@ keeping summaries on nibble boundaries.<a href="#section-5.2-4" class="pilcrow">
    is only useful if <em>each layer advertises exactly one summary into the
    layer above</em>.  The guiding rule is <strong>summarise at every 8‑bit field
    boundary</strong> so the mask aligns to a full byte.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">┌─────────────┬────────────┬────────────┐
-   │ Topology    │ Field mask │ Prefix     │
-   ├─────────────┼────────────┼────────────┤
-   │ Core AS     │  /32       │ Reg+FA     │
-   │ Region POPs │  /38–/40   │ Set range  │
-   │ Single node │  /48       │ Node (NN)  │
-   └─────────────┴────────────┴────────────┘<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-2">+-----------------+--------+---------------+
+| Topology Scope  | Mask   | Mask point    |
++-----------------+--------+---------------+
+| Core AS         | /32    | Reg+FA        |
+| Region POPs     | /38-40 | Set range     |
+| Single node     | /48    | Node (NN)     |
++-----------------+--------+---------------+<a href="#section-7-2" class="pilcrow">¶</a></p>
 <p id="section-7-3"><strong>How the summarization flow</strong><a href="#section-7-3" class="pilcrow">¶</a></p>
 <p id="section-7-4">## <strong>Region → Core (IS‑IS L2):</strong> Every Region advertises one /32 per
       Flex‑Algo.  The prefix is derived by masking after the FA byte so
