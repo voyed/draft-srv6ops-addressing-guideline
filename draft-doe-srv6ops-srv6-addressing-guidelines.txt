@@ -167,17 +167,17 @@ Table of Contents
    hierarchy that scales smoothly from small POPs to continental C-SID
    domains.
 
-   *  _G1: – Scalable Aggregation_ ≤ 3 new routes in the core after any
+   *  G1: – Scalable Aggregation* ≤ 3 new routes in the core after any
       failure.
 
-   *  _G2: – Per-Node /48 Locator_ Preserves /64 for services and /96
-      for locals while capping FIB size.
+   *  G2: – Per-Node /48 Locator* Preserves /64 for services and /96 for
+      locals while capping FIB size.
 
-   *  _G3: – Flex-Algo Plane Parity_ Bit positions identical across
+   *  G3: – Flex-Algo Plane Parity* Bit positions identical across
       planes.
 
-   *  _G4: – Global vs Local Split_ Even Sets = Global C-SIDs, odd Sets
-      = Local C-SIDs.
+   *  G4: – Global vs Local Split* Even Sets = Global C-SIDs, odd Sets =
+      Local C-SIDs.
 
 5.  CSID Address-Encoding Framework (F3216)
 
