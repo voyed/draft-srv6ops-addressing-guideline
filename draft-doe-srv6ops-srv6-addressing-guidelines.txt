@@ -2,10 +2,16 @@
 
 
 
-SRv6 Operations                                                 D. Voyer
-Internet-Draft                                             Cisco Systems
-Intended status: Informational                               2 July 2025
-Expires: 3 January 2026
+SRv6 Operations                                                N. Warnke
+Internet-Draft                                              M. Horneffer
+Intended status: Informational                          Deutsche Telekom
+Expires: 3 January 2026                                        N. Morris
+                                                         VerizonWireless
+                                                            S. Al-kokhon
+                                                                        
+                                                                D. Voyer
+                                                           Cisco Systems
+                                                             2 July 2025
 
 
                        SRv6 Addressing Guidelines
@@ -93,7 +99,7 @@ Table of Contents
    10. IANA Considerations
    11. Normative References
    Appendix A.  Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -440,7 +446,26 @@ Appendix A.  Acknowledgments
 
    TBD
 
-Author's Address
+Authors' Addresses
+
+   Nils Warnke
+   Deutsche Telekom
+   Email: nils.warnke@telekom.de
+
+
+   Martin Horneffer
+   Deutsche Telekom
+   Email: Martin.Horneffer@telekom.de
+
+
+   Nicklous Morris
+   VerizonWireless
+   Email: nicklous.morris@verizonwireless.com
+
+
+   Sara Al-kokhon
+   Email: sara.al-Kokhon@bell.ca
+
 
    Daniel Voyer
    Cisco Systems
