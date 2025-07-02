@@ -127,7 +127,7 @@ informative:
 
    This section converts theory into byte boundaries, showing exactly
    **how** IPv6 bit‑richness is partitioned into a multi‑level hierarchy
-   (Global‑ID → Region → Flex‑Algo → Site‑Set → Node).
+   (Global‑ID → Region → Flex‑Algo → Site‑seT → Node).
 
    The 128‑bit SRv6 locator is split into a 64‑bit *network* part and a
    64‑bit *host* part.  The network part encodes Domain‑ID, Region‑ID,
@@ -154,7 +154,7 @@ Bits 0‑7 8‑15 16‑23 24‑31 32‑39 40‑47   (host part)
    D     | 8‑15 | **Domain‑ID** 
    Reg   |16‑23 | **Region‑ID** 
    FA    |24‑31 | **Flex‑Algo**
-   ST    |32‑39 | **Set (ST)**
+   ST    |32‑39 | **Site-seT (ST)**
    NN    |40‑47 | **Node‑ID** (/48 locator)
 
    *Smaller networks:* Operators that do not require multiple domains or
@@ -181,7 +181,7 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
    * FA (Flex‑Algo) – full byte (24‑31)
    * ST / NN – identical meaning as in Section 4.1
 
-   Because the first two bytes are locked (*5F00*), Domain and Region
+   Because the first two bytes are locked (*5f00*), Domain and Region
    live in the third byte.  Flex‑Algo retains a full byte so existing
    deployments need no change.  ISPs can subdivide further—for example
    using the lower nibble of Flex‑Algo as a sub‑region key—while keeping
@@ -189,7 +189,7 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
 
 # Deployment Profiles
 
-   The Set (SS) byte lets planners scale by powers of 256: **one even Set
+   The Site-seT (ST) byte lets planners scale by powers of 256: **one even Set
    supports up to 256 node locators**.  Sizing logic:
 
      • Small POP (≤256 nodes): 1 even Set  → summary /40
@@ -206,7 +206,7 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
    • **Summary injected into L2:** fd00:0500:0600::/40
 
 ###  Medium Site – 315 routers
-   • Sets 0x0A00–0x0A10 → fd00:0500:0a00::/39
+   • Sets 0x0A00–0x0a10 → fd00:0500:0a00::/39
    • **Summary injected into L2:** fd00:0500:0a00::/39
 
 ###  Large Site – 890 routers
@@ -272,7 +272,7 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
    use the *medium‑site* case from Section 5.1.2:
 
      • Region‑ID 0x05, Flex‑Algo 0
-     • Set 0x0A10, Node 0x13B
+     • Set 0x0a10, Node 0x13b
      • locator0 → **fd00:0500:0a13::/48**
      • L2 summary → **fd00:0500:0a00::/39**
 
@@ -284,7 +284,7 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
 
  * Example (Medium Site from Section 5.1.2):
      * Region-ID = 0x05, Flex-Algo = 0x00
-     * ST = 0x0A, Node-ID = 0x13B (hex)
+     * ST = 0x0a, Node-ID = 0x13a (hex)
      * locator0 = fd00:0500:0a13::/48
      * L1 summary = fd00:0500:0a00::/39
 
