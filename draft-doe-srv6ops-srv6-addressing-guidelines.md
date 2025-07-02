@@ -35,7 +35,7 @@ author:
     email: Martin.Horneffer@telekom.de
 
     fullname: Daniel Voyer
-    organization: Cisco
+    organization: Cisco Systems
     email: davoyer@cisco.com
 
 normative:
@@ -325,6 +325,7 @@ boundaries—and operators should leverage them to minimize security risk:
       straightforward and less error-prone than arbitrary masks.
 
  * Locator->Loopback Consistency Checks
+
       Loopbacks derive directly from the /48 locator, e.g., fd00:0500:0a13::1.
       If an operator misassings a locator, a simple script can detect mismatches
       between the advertised /48 and the loopback's low-order 32-bit value. This
@@ -348,7 +349,6 @@ scalable.
 # IANA Considerations
 
 TBD
-
 
 --- back
 
