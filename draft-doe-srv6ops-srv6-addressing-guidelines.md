@@ -41,10 +41,6 @@ author:
     fullname: Sara Al-kokhon
     organiation: Bell Canada
     email: sara.al-Kokhon@bell.ca
- -
-    fullname: Daniel Voyer
-    organization: Cisco Systems
-    email: davoyer@cisco.com
 
 normative:
 
