@@ -1594,10 +1594,10 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
                 <p id="section-8.1-2.1.2.2.1">ST = 0x0A, Node-ID = 0x13B (hex)<a href="#section-8.1-2.1.2.2.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-8.1-2.1.2.3">
-                <p id="section-8.1-2.1.2.3.1">locator0 = fd00:0500:0A13::/48<a href="#section-8.1-2.1.2.3.1" class="pilcrow">¶</a></p>
+                <p id="section-8.1-2.1.2.3.1">locator0 = fd00:0500:0a13::/48<a href="#section-8.1-2.1.2.3.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-8.1-2.1.2.4">
-                <p id="section-8.1-2.1.2.4.1">L1 summary = fd00:0500:0A00::/39<a href="#section-8.1-2.1.2.4.1" class="pilcrow">¶</a></p>
+                <p id="section-8.1-2.1.2.4.1">L1 summary = fd00:0500:0a00::/39<a href="#section-8.1-2.1.2.4.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
@@ -1608,7 +1608,7 @@ Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47
                 <p id="section-8.1-2.2.2.1.1">Rule: Loopback = locator0 + ::1/128 from locator0.<a href="#section-8.1-2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-8.1-2.2.2.2">
-                <p id="section-8.1-2.2.2.2.1">Example: fd00:0500:0A13::1/128<a href="#section-8.1-2.2.2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-8.1-2.2.2.2.1">Example: fd00:0500:0a13::1/128<a href="#section-8.1-2.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-8.1-2.2.2.3">
                 <p id="section-8.1-2.2.2.3.1">Because this resides inside the /48 advertised by IS-IS, no additional
@@ -1627,10 +1627,10 @@ loopback prefix is needed (reduces FIB noise)<a href="#section-8.1-2.2.2.3.1" cl
 </li>
               <li class="normal" id="section-8.1-2.3.2.3">
                 <p id="section-8.1-2.3.2.3.1">System-ID: Last three bytes of locator0, nibble-grouped:
-locator0 (0A13:0B00:0000) → System-ID = 0A13.0B00.00<a href="#section-8.1-2.3.2.3.1" class="pilcrow">¶</a></p>
+locator0 (0a13:0B00:0000) → System-ID = 0a13.0B00.00<a href="#section-8.1-2.3.2.3.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-8.1-2.3.2.4">
-                <p id="section-8.1-2.3.2.4.1">NET-ID = 49.10.0A13.0B00.00<a href="#section-8.1-2.3.2.4.1" class="pilcrow">¶</a></p>
+                <p id="section-8.1-2.3.2.4.1">NET-ID = 49.10.0a13.0B00.00<a href="#section-8.1-2.3.2.4.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
@@ -1641,13 +1641,13 @@ locator0 (0A13:0B00:0000) → System-ID = 0A13.0B00.00<a href="#section-8.1-2.3.
                 <p id="section-8.1-2.4.2.1.1">Method: Use lower 32 bits of loopback, rendered in dotted-decimal.<a href="#section-8.1-2.4.2.1.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-8.1-2.4.2.2">
-                <p id="section-8.1-2.4.2.2.1">Loopback low-32 bits = 0x00000A13 → 0.0.10.19<a href="#section-8.1-2.4.2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-8.1-2.4.2.2.1">Loopback low-32 bits = 0x00000a13 → 0.0.10.19<a href="#section-8.1-2.4.2.2.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-8.1-2.4.2.3">
                 <p id="section-8.1-2.4.2.3.1">BGP Router-ID = 0.0.10.19<a href="#section-8.1-2.4.2.3.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-8.1-2.4.2.4">
-                <p id="section-8.1-2.4.2.4.1">IS-IS System-ID (48-bit alt) = 0000.0A13.0000<a href="#section-8.1-2.4.2.4.1" class="pilcrow">¶</a></p>
+                <p id="section-8.1-2.4.2.4.1">IS-IS System-ID (48-bit alt) = 0000.0a13.0000<a href="#section-8.1-2.4.2.4.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
@@ -1677,13 +1677,21 @@ Because locators and summaries align on full-byte boundaries (e.g.,
    straightforward and less error-prone than arbitrary masks.<a href="#section-9-2.1.2" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-9-2.2">
-          <p id="section-9-2.2.1">Logging and Periodic Audits<a href="#section-9-2.2.1" class="pilcrow">¶</a></p>
-<p id="section-9-2.2.2">
+          <p id="section-9-2.2.1">Locator-&gt;Loopback Consistency Checks
+   Loopbacks derive directly from the /48 locator, e.g., fd00:0500:0a13::1.
+   If an operator misassings a locator, a simple script can detect mismatches
+   between the advertised /48 and the loopback's low-order 32-bit value. This
+   check helps prevent accidental duplicate identifiers that could be exploited
+   for spoofing.<a href="#section-9-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-9-2.3">
+          <p id="section-9-2.3.1">Logging and Periodic Audits<a href="#section-9-2.3.1" class="pilcrow">¶</a></p>
+<p id="section-9-2.3.2">
 Log locator assignments and summary changes at each aggregation level.
    Periodically audit ACLs to ensure they align with the current hierarchy (e.g.,
    confirm that all allowed /48s fall under their parent /32). This catch-all
    approach helps identify any unauthorized or stale entries before they
-   compromise security.<a href="#section-9-2.2.2" class="pilcrow">¶</a></p>
+   compromise security.<a href="#section-9-2.3.2" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-9-3">By combining byte-aligned summarization with simple ACL rules at Region or
