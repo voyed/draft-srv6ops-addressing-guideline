@@ -101,7 +101,7 @@ informative:
    * Locator‑Block:   Uppermost bits that identify an SRv6 domain
    * Flex‑Algo:       IGP Flexible Algorithm ID
    * Region‑ID:       8‑bit value (bits 17‑24) grouping sites
-   * **Set (SS)**:    256 C‑SIDs (one /40) sizing a site; even = GIB, odd = LIB
+   * **Set (ST)**:    256 C‑SIDs (one /40) sizing a site; even = GIB, odd = LIB
    * GIB:             Global‑ID Block — even‑indexed Sets carrying global C‑SIDs
    * LIB:             Local‑ID Block  — odd‑indexed Sets filtered at Region edge
    * SRv6 Site‑ID:    Byte‑sized identifier for a POP cluster
