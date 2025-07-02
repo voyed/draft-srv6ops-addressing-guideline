@@ -173,8 +173,8 @@ NN    |40‑47 | **Node‑ID** - uniquely itentifies nodes(/48 locator)**
 
 ## Locator Structure for RFC 9602 (5f00::/16-model)
 
-RFC 9602 reserves 5F00::/16 for SRv6 operator locators.  With the first
-two bytes fixed (5F 00), the hierarchy shifts half a byte to the right:
+RFC 9602 reserves 5f00::/16 for SRv6 operator locators.  With the first
+two bytes fixed (5f 00), the hierarchy shifts half a byte to the right:
 Domain‑ID and Region‑ID now share the third byte, while the downstream
 fields remain byte‑aligned.
 
@@ -187,7 +187,7 @@ fields remain byte‑aligned.
                             |  |                                   |
                             |  +-- Region‑ID (4 bits)              |
                             +----- Domain‑ID (4 bits)              |
-                                        <---- network /48 ----->---+
+    <------------------------ network / locator (48 bits) ----->---+
 
 Field  Bits   Purpose
 -----  -----  ---------------------------------------------------
@@ -195,7 +195,7 @@ Field  Bits   Purpose
 D      16‑19  Domain‑ID — up to 15 SRv6 domains (0x1…0xF)
 R      20‑23  Region‑ID — up to 15 regions per domain (0x1…0xF)
 FA     24‑31  IGP Flexible‑Algorithm identifier
-ST     32‑39  Site‑set; even = GIB, odd = LIB
+ST     32‑39  Site‑seT; even = GIB, odd = LIB
 NN     40‑47  Node‑ID — uniquely identifies one router (/48)
 
 Planning tip: single‑domain or flat‑region deployments may set D and/or
