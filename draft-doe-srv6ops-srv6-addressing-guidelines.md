@@ -177,7 +177,7 @@ NN    |40‑47 | **Node‑ID** - uniquely itentifies nodes(/48 locator)**
    pushes the hierarchy one half‑byte to the right:
 
 Nibbles (4 bits)
-                      
+
  0   1   2     3       4      5      6‑15   host part
 +----+----+-----+------+-------+----+----------------+
 | 5F | 00 |  D  |  R  |  FA   | ST |  NN  |  host64  |
