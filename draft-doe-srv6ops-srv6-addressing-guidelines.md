@@ -199,8 +199,8 @@ ST     32‑39  Site‑set; even = GIB, odd = LIB
 NN     40‑47  Node‑ID — uniquely identifies one router (/48)
 
 Planning tip: single‑domain or flat‑region deployments may set D and/or
-R to 0x0; masks still summarise cleanly. ISPs can subdivide further—for 
-example using the lower nibble of Flex‑Algo as a sub‑region key—while 
+R to 0x0; masks still summarise cleanly. ISPs can subdivide further—for
+example using the lower nibble of Flex‑Algo as a sub‑region key—while
 keeping summaries on nibble boundaries.
 
 # Deployment Profiles
