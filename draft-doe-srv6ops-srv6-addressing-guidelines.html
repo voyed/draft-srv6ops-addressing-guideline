@@ -1378,13 +1378,17 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
    hierarchy described in Section 4.  Reading the hexadecimal address
    reveals the Domain, Region, Flex‑Algo, Set and Node values without a
    lookup table.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1-2">Nibbles (4 bits)
-    0             15             31             47          63
-    |             |              |              |           |
-    +-------+-------+-------+-------+-------+-------+----------+
-    |  fd   |   D   |  Reg  |   FA  |   ST  |   NN  | host‑64  |
-    +-------+-------+-------+-------+-------+-------+----------+
-         &lt;-----------  network / locator (48 bits) ----------&gt;|<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">Nibbles (4 bits)<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5.1-3">
+<pre>
+0             15             31             47          63
+|             |              |              |           |
++-------+-------+-------+-------+-------+-------+----------+
+|  fd   |   D   |  Reg  |   FA  |   ST  |   NN  | host‑64  |
++-------+-------+-------+-------+-------+-------+----------+
+     &lt;-----------  network / locator (48 bits) ----------&gt;|
+</pre><a href="#section-5.1-3" class="pilcrow">¶</a>
+</div>
 <table class="center" id="table-1">
           <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
 <thead>
@@ -1436,10 +1440,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             </tr>
           </tbody>
         </table>
-<p id="section-5.1-4"><em>Smaller networks:</em> Operators that do not require multiple domains or
+<p id="section-5.1-5"><em>Smaller networks:</em> Operators that do not require multiple domains or
    regional partitions can leave <strong>Domain‑ID</strong> and/or <strong>Region‑ID</strong> set
    to <code>0x00</code>.  The byte‑aligned masks still summarise cleanly, and all
-   downstream fields remain valid.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
+   downstream fields remain valid.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="locator-structure-for-rfc96025f0016-model">
@@ -1449,31 +1453,31 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         </h3>
 <p id="section-5.2-1">Under <em>5F00::/16</em>, the first 16 bits are fixed.  The locator therefore
    pushes the hierarchy one half‑byte to the right:<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2-2">Nibbles (4 bits)                      host part
- 0   1   2     3       4      5      6‑15
+<p id="section-5.2-2">Nibbles (4 bits)<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">0   1   2     3       4      5      6‑15   host part
 +----+----+-----+------+-------+----+----------------+
 | 5F | 00 |  D  |  R  |  FA   | ST |  NN  |  host64  |
 +----+----+-----+------+-------+----+----------------+
-Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+Bits 0‑15 fixed   16‑19 20‑23   24‑31 32‑39 40‑47<a href="#section-5.2-3" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.2-3.1">
-            <p id="section-5.2-3.1.1">D  (Domain‑ID) – 4 bits → up to <strong>15 domains</strong> (0x1‑0xF)<a href="#section-5.2-3.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5.2-4.1">
+            <p id="section-5.2-4.1.1">D  (Domain‑ID) – 4 bits → up to <strong>15 domains</strong> (0x1‑0xF)<a href="#section-5.2-4.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-5.2-3.2">
-            <p id="section-5.2-3.2.1">R  (Region‑ID) – 4 bits → <strong>15 regions</strong> per domain (0x1‑0xF)<a href="#section-5.2-3.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-5.2-4.2">
+            <p id="section-5.2-4.2.1">R  (Region‑ID) – 4 bits → <strong>15 regions</strong> per domain (0x1‑0xF)<a href="#section-5.2-4.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-5.2-3.3">
-            <p id="section-5.2-3.3.1">FA (Flex‑Algo) – full byte (24‑31)<a href="#section-5.2-3.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-5.2-4.3">
+            <p id="section-5.2-4.3.1">FA (Flex‑Algo) – full byte (24‑31)<a href="#section-5.2-4.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-5.2-3.4">
-            <p id="section-5.2-3.4.1">ST / NN – identical meaning as in Section 4.1<a href="#section-5.2-3.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-5.2-4.4">
+            <p id="section-5.2-4.4.1">ST / NN – identical meaning as in Section 4.1<a href="#section-5.2-4.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-5.2-4">Because the first two bytes are locked (<em>5f00</em>), Domain and Region
+<p id="section-5.2-5">Because the first two bytes are locked (<em>5f00</em>), Domain and Region
    live in the third byte.  Flex‑Algo retains a full byte so existing
    deployments need no change.  ISPs can subdivide further—for example
    using the lower nibble of Flex‑Algo as a sub‑region key—while keeping
-   summaries on nibble boundaries.<a href="#section-5.2-4" class="pilcrow">¶</a></p>
+   summaries on nibble boundaries.<a href="#section-5.2-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

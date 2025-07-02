@@ -196,11 +196,14 @@ Table of Contents
    address reveals the Domain, Region, Flex-Algo, Set and Node values
    without a lookup table.
 
-   Nibbles (4 bits) 0 15 31 47 63 | | | | |
-   +-------+-------+-------+-------+-------+-------+----------+ | fd |
-   D | Reg | FA | ST | NN | host-64 |
+   Nibbles (4 bits)
+
+   0             15             31             47          63
+   |             |              |              |           |
    +-------+-------+-------+-------+-------+-------+----------+
-   <----------- network / locator (48 bits) ---------->|
+   |  fd   |   D   |  Reg  |   FA  |   ST  |   NN  | host-64  |
+   +-------+-------+-------+-------+-------+-------+----------+
+        <-----------  network / locator (48 bits) ---------->|
 
       +=======+=======+=============================================+
       | Field | Bits  | Purpose                                     |
@@ -232,7 +235,9 @@ Table of Contents
    Under _5F00::/16_, the first 16 bits are fixed.  The locator
    therefore pushes the hierarchy one half-byte to the right:
 
-   Nibbles (4 bits) host part 0 1 2 3 4 5 6-15
+   Nibbles (4 bits)
+
+   0 1 2 3 4 5 6-15 host part
    +----+----+-----+------+-------+----+----------------+ | 5F | 00 |
    D | R | FA | ST | NN | host64 |
    +----+----+-----+------+-------+----+----------------+ Bits 0-15
