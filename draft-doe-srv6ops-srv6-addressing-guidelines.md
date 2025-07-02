@@ -236,13 +236,11 @@ keeping summaries on nibble boundaries.
    layer above*.  The guiding rule is **summarise at every 8‑bit field
    boundary** so the mask aligns to a full byte.
 
-+-----------------+--------+---------------+
-| Topology Scope  | Mask   | Mask point    |
-+-----------------+--------+---------------+
-| Core AS         | /32    | Reg+FA        |
-| Region POPs     | /38-40 | Set range     |
-| Single node     | /48    | Node (NN)     |
-+-----------------+--------+---------------+
+Topology Scope | Field ask | Prefix
+---------------|-----------|--------
+Core AS	      |  /32	   | Reg+FA
+Region POPs    |  /38-/40  | Set range
+Single node.   |  /48.     | Node (NN)
 
    **How the summarization flow**
 
