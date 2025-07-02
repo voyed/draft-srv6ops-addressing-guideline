@@ -1669,10 +1669,21 @@ locator0 (0A13:0B00:0000) → System-ID = 0A13.0B00.00<a href="#section-8.1-2.3.
       </h2>
 <p id="section-9-1">The hierarchical IP addressing plan proposed here offers natural ACL
 boundaries—and operators should leverage them to minimize security risk:<a href="#section-9-1" class="pilcrow">¶</a></p>
-<p id="section-9-2">By combining byte-aligned summarization with simple ACL rules at Region or
+<ul class="normal">
+<li class="normal" id="section-9-2.1">
+          <p id="section-9-2.1.1">Byte-Aligned Summaries as ACL Anchors
+Because locators and summaries align on full-byte boundaries (e.g.,
+/32 for Region, /48 for Site), ACLs can match on these exact prefixes.
+For example, an ACL permitting fd00:0500::/32 automatically allows all
+Site- and Node-level prefixes under Region 05 but denies anything
+outside. Maintaining ACLs at each Region border is therefore
+straightforward and less error-prone than arbitrary masks.<a href="#section-9-2.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-9-3">By combining byte-aligned summarization with simple ACL rules at Region or
    Site boundaries, operators can enforce strict filtering with minimal complexity,
    leveraging the hierarchical plan to make ACL configuration both robust and
-   scalable.<a href="#section-9-2" class="pilcrow">¶</a></p>
+   scalable.<a href="#section-9-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
