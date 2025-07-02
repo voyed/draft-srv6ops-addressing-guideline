@@ -318,7 +318,6 @@ The hierarchical IP addressing plan proposed here offers natural ACL
 boundaries—and operators should leverage them to minimize security risk:
 
  * Byte-Aligned Summaries as ACL Anchors
-
    Because locators and summaries align on full-byte boundaries (e.g.,
    /32 for Region, /48 for Site), ACLs can match on these exact prefixes.
    For example, an ACL permitting fd00:0500::/32 automatically allows all
@@ -327,7 +326,6 @@ boundaries—and operators should leverage them to minimize security risk:
    straightforward and less error-prone than arbitrary masks.
 
  * Locator→Loopback Consistency Checks
-
    Loopbacks derive directly from the /48 locator (e.g., fd00:0500:0A13::1). If
    an operator misassigns a locator, a simple script can detect mismatches
    between the advertised /48 and the loopback’s low-order 32-bit value. This
@@ -350,12 +348,12 @@ By combining byte-aligned summarization with simple ACL rules at Region or
 
 # IANA Considerations
 
-This document has no IANA actions.
+TBD
 
 
 --- back
 
 # Acknowledgments
-{:numbered="false"}
+TBD
 
 
