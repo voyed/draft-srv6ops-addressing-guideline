@@ -12,9 +12,7 @@
    backbones of up to 50 000 nodes.  It specifies a compressed Segment
    Identifier (C‑SID) locator structure (F3216) that encodes Flex‑Algo,
    Region‑ID, Site‑ID and Node‑ID inside a fixed /48 locator while
-   leaving space for Local and Global C‑SIDs.  An “ultra‑scale” profile
-   (~300 000 nodes) using End.LBS locator‑block swap is also defined.
-   The aim is to accelerate brown‑field SRv6 migrations by offering
+   leaving space for Local and Global C‑SIDs. The aim is to accelerate brown‑field SRv6 migrations by offering
    deterministic field carving, summarisation rules and actionable
    operational guidance. 
     " name="description">
@@ -1096,9 +1094,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
    backbones of up to 50 000 nodes.  It specifies a compressed Segment
    Identifier (C‑SID) locator structure (F3216) that encodes Flex‑Algo,
    Region‑ID, Site‑ID and Node‑ID inside a fixed /48 locator while
-   leaving space for Local and Global C‑SIDs.  An “ultra‑scale” profile
-   (~300 000 nodes) using End.LBS locator‑block swap is also defined.
-   The aim is to accelerate brown‑field SRv6 migrations by offering
+   leaving space for Local and Global C‑SIDs. The aim is to accelerate brown‑field SRv6 migrations by offering
    deterministic field carving, summarisation rules and actionable
    operational guidance.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
@@ -1681,25 +1677,13 @@ Because locators and summaries align on full-byte boundaries (e.g.,
    straightforward and less error-prone than arbitrary masks.<a href="#section-9-2.1.2" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-9-2.2">
-          <p id="section-9-2.2.1">Locator→Loopback Consistency Checks<a href="#section-9-2.2.1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-9-2.2.2">
-<pre>
-Loopbacks derive directly from the /48 locator (e.g., fd00:0500:0A13::1). If
-an operator misassigns a locator, a simple script can detect mismatches
-between the advertised /48 and the loopback’s low-order 32-bit value. This
-check helps prevent accidental duplicate identifiers that could be
-exploited for spoofing.
-</pre><a href="#section-9-2.2.2" class="pilcrow">¶</a>
-</div>
-</li>
-        <li class="normal" id="section-9-2.3">
-          <p id="section-9-2.3.1">Logging and Periodic Audits<a href="#section-9-2.3.1" class="pilcrow">¶</a></p>
-<p id="section-9-2.3.2">
+          <p id="section-9-2.2.1">Logging and Periodic Audits<a href="#section-9-2.2.1" class="pilcrow">¶</a></p>
+<p id="section-9-2.2.2">
 Log locator assignments and summary changes at each aggregation level.
    Periodically audit ACLs to ensure they align with the current hierarchy (e.g.,
    confirm that all allowed /48s fall under their parent /32). This catch-all
    approach helps identify any unauthorized or stale entries before they
-   compromise security.<a href="#section-9-2.3.2" class="pilcrow">¶</a></p>
+   compromise security.<a href="#section-9-2.2.2" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-9-3">By combining byte-aligned summarization with simple ACL rules at Region or
