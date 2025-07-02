@@ -1546,13 +1546,33 @@ keeping summaries on nibble boundaries.<a href="#section-5.2-4" class="pilcrow">
    is only useful if <em>each layer advertises exactly one summary into the
    layer above</em>.  The guiding rule is <strong>summarise at every 8‑bit field
    boundary</strong> so the mask aligns to a full byte.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">+-----------------+--------+---------------+
-| Topology Scope  | Mask   | Mask point    |
-+-----------------+--------+---------------+
-| Core AS         | /32    | Reg+FA        |
-| Region POPs     | /38-40 | Set range     |
-| Single node     | /48    | Node (NN)     |
-+-----------------+--------+---------------+<a href="#section-7-2" class="pilcrow">¶</a></p>
+<table class="center" id="table-2">
+        <caption><a href="#table-2" class="selfRef">Table 2</a></caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Topology Scope</th>
+            <th class="text-left" rowspan="1" colspan="1">Field ask</th>
+            <th class="text-left" rowspan="1" colspan="1">Prefix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Core AS</td>
+            <td class="text-left" rowspan="1" colspan="1">/32</td>
+            <td class="text-left" rowspan="1" colspan="1">Reg+FA</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Region POPs</td>
+            <td class="text-left" rowspan="1" colspan="1">/38-/40</td>
+            <td class="text-left" rowspan="1" colspan="1">Set range</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Single node.</td>
+            <td class="text-left" rowspan="1" colspan="1">/48.</td>
+            <td class="text-left" rowspan="1" colspan="1">Node (NN)</td>
+          </tr>
+        </tbody>
+      </table>
 <p id="section-7-3"><strong>How the summarization flow</strong><a href="#section-7-3" class="pilcrow">¶</a></p>
 <p id="section-7-4">## <strong>Region → Core (IS‑IS L2):</strong> Every Region advertises one /32 per
       Flex‑Algo.  The prefix is derived by masking after the FA byte so
