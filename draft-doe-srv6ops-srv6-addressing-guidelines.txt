@@ -116,7 +116,7 @@ Table of Contents
    spoofing.  A Global-Unicast scheme is possible but demands airtight
    RPKI and strict ingress filters; it is therefore _NOT RECOMMENDED_
    unless strong business drivers outweigh the risk.  RFC9602 specifies
-   _5F00::/16_ for operators willing to deploy new strict at their
+   _5f00::/16_ for operators willing to deploy new strict at their
    border and edge ACLs ROA is also a viable option.
 
    The *C-SID* paradigm compresses 16-bit Segment Identifiers inside a

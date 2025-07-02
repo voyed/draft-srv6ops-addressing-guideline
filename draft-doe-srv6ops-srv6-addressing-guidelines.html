@@ -12,9 +12,9 @@
    backbones of up to 50 000 nodes.  It specifies a compressed Segment
    Identifier (C‑SID) locator structure (F3216) that encodes Flex‑Algo,
    Region‑ID, Site‑ID and Node‑ID inside a fixed /48 locator while
-   leaving space for Local and Global C‑SIDs. The aim is to accelerate brown‑field SRv6 migrations by offering
-   deterministic field carving, summarisation rules and actionable
-   operational guidance. 
+   leaving space for Local and Global C‑SIDs. The aim is to accelerate
+   brown‑field SRv6 migrations by offering deterministic field carving,
+   summarisation rules and actionable operational guidance. 
     " name="description">
 <meta content="xml2rfc 3.29.0" name="generator">
 <meta content="SRv6 Addressing" name="keyword">
@@ -1094,9 +1094,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
    backbones of up to 50 000 nodes.  It specifies a compressed Segment
    Identifier (C‑SID) locator structure (F3216) that encodes Flex‑Algo,
    Region‑ID, Site‑ID and Node‑ID inside a fixed /48 locator while
-   leaving space for Local and Global C‑SIDs. The aim is to accelerate brown‑field SRv6 migrations by offering
-   deterministic field carving, summarisation rules and actionable
-   operational guidance.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+   leaving space for Local and Global C‑SIDs. The aim is to accelerate
+   brown‑field SRv6 migrations by offering deterministic field carving,
+   summarisation rules and actionable operational guidance.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1256,7 +1256,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
    spoofing.  A Global‑Unicast scheme is possible but demands airtight
    RPKI and strict ingress filters; it is therefore <em><span class="bcp14">NOT RECOMMENDED</span></em>
    unless strong business drivers outweigh the risk. RFC9602 specifies
-   <em>5F00::/16</em> for operators willing to deploy new strict at their border and edge ACLs ROA is also a viable option.<a href="#section-1-3" class="pilcrow">¶</a></p>
+   <em>5f00::/16</em> for operators willing to deploy new strict at their border
+   and edge ACLs ROA is also a viable option.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">The <strong>C‑SID</strong> paradigm compresses 16‑bit Segment Identifiers inside a
    /48 locator—balancing header overhead with FIB scale while allowing
    deterministic summarisation.<a href="#section-1-4" class="pilcrow">¶</a></p>
