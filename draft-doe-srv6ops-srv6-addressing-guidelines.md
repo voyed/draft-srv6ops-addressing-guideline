@@ -148,22 +148,26 @@ informative:
    reveals the Domain, Region, Flex‑Algo, Set and Node values without a
    lookup table.
 
-```
-Byte  0    1    2    3    4    5       6‑15
-Bits 0‑7 8‑15 16‑23 24‑31 32‑39 40‑47   (host part)
-     +---+---+----+----+----+----+----------------+
-     |fd | D |Reg | FA | ST | NN |    host64      |
-     +---+---+----+----+----+----+----------------+
-```
+    0             15             31             47          63
+    |             |              |              |           |
+    +-------+-------+-------+-------+-------+-------+----------+
+    |  fd   |   D   |  Reg  |   FA  |   ST  |   NN  | host‑64  |
+    +-------+-------+-------+-------+-------+-------+----------+
+         <-----------  network / locator (48 bits) ---------->|
 
-   Field | Bits | Purpose
-   ------|------|---------------------------------------------
-   fd    | 0‑7  | **ULA prefix keeps locators private**
-   D     | 8‑15 | **Domain‑ID** 
-   Reg   |16‑23 | **Region‑ID** 
-   FA    |24‑31 | **Flex‑Algo**
-   ST    |32‑39 | **Site-seT (ST)**
-   NN    |40‑47 | **Node‑ID** (/48 locator)
+          fd : ULA prefix (fd00::/8) keeps locators private
+
+Field  Bits   Purpose
+-----  -----  ---------------------------------------------
+fd     0‑7    ULA prefix (fd00::/8) keeps infrastructure off
+              the public Internet
+D      8‑15   Domain‑ID – up to 256 autonomous domains
+Reg    16‑23  Region‑ID – groups Sites that share latency goals
+FA     24‑31  IGP Flexible‑Algorithm identifier
+ST     32‑39  Site-set; even = GIB, odd = LIB
+NN     40‑47  Node‑ID – uniquely identifies one router (/48)
+
+Smaller networks: set D and/or Reg to 0x00; masks still summarise.
 
    *Smaller networks:* Operators that do not require multiple domains or
    regional partitions can leave **Domain‑ID** and/or **Region‑ID** set
