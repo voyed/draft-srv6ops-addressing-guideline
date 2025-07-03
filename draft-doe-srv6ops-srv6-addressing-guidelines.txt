@@ -5,13 +5,13 @@
 SRv6 Operations                                                N. Warnke
 Internet-Draft                                              M. Horneffer
 Intended status: Informational                          Deutsche Telekom
-Expires: 3 January 2026                                        N. Morris
+Expires: 4 January 2026                                        N. Morris
                                                          VerizonWireless
                                                                C. Hassan
                                                              Bell Canada
                                                                 D. Voyer
                                                            Cisco Systems
-                                                             2 July 2025
+                                                             3 July 2025
 
 
                        SRv6 Addressing Guidelines
@@ -21,13 +21,13 @@ Abstract
 
    This document provides operational guidelines for designing Segment
    Routing over IPv6 (SRv6) addressing plans in
-   Internet-service-provider backbones of up to 50 000 nodes.  It
-   specifies a compressed Segment Identifier (C-SID) locator structure
-   (F3216) that encodes Flex-Algo, Region-ID, Site-ID and Node-ID inside
-   a fixed /48 locator while leaving space for Local and Global C-SIDs.
-   The aim is to accelerate brown-field SRv6 migrations by offering
-   deterministic field carving, summarisation rules and actionable
-   operational guidance.
+   Internet-service-provider backbones.  It specifies a compressed
+   Segment Identifier (C-SID) locator structure (F3216) that encodes
+   Flex-Algo, Region-ID, Site-ID and Node-ID inside a fixed /48 locator
+   while leaving space for Local and Global C-SIDs.  The aim is to
+   accelerate brown-field SRv6 migrations by offering deterministic
+   field carving, summarisation rules and actionable operational
+   guidance.
 
 About This Document
 
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 January 2026.
+   This Internet-Draft will expire on 4 January 2026.
 
 Copyright Notice
 
