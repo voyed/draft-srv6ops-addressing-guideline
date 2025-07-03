@@ -56,12 +56,12 @@ informative:
 
    This document provides operational guidelines for designing Segment
    Routing over IPv6 (SRv6) addressing plans in Internet‑service‑provider
-   backbones of up to 50 000 nodes.  It specifies a compressed Segment
-   Identifier (C‑SID) locator structure (F3216) that encodes Flex‑Algo,
-   Region‑ID, Site‑ID and Node‑ID inside a fixed /48 locator while
-   leaving space for Local and Global C‑SIDs. The aim is to accelerate
-   brown‑field SRv6 migrations by offering deterministic field carving,
-   summarisation rules and actionable operational guidance.
+   backbones.  It specifies a compressed Segment Identifier (C‑SID)
+   locator structure (F3216) that encodes Flex‑Algo, Region‑ID, Site‑ID
+   and Node‑ID inside a fixed /48 locator while leaving space for Local
+   and Global C‑SIDs. The aim is to accelerate brown‑field SRv6 migrations
+   by offering deterministic field carving, summarisation rules and
+   actionable operational guidance.
 
 
 --- middle
