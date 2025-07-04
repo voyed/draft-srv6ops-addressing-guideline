@@ -60,7 +60,7 @@ informative:
    locator structure (F3216) that encodes Flex‑Algo, Region‑ID, Site‑ID
    and Node‑ID inside a fixed /48 locator while leaving space for Local
    and Global C‑SIDs. The aim is to accelerate brown‑field SRv6 migrations
-   by offering deterministic field carving, summarisation rules and
+   by offering deterministic field carving, summarization rules and
    actionable operational guidance.
 
 
@@ -74,7 +74,7 @@ informative:
    Region, Flex‑Algo, Site‑Set, Node—summaries fall naturally at region
    borders and troubleshooting becomes visual.
 
-   A well‑designed SRv6 addressing plan underpins summarisation, fast
+   A well‑designed SRv6 addressing plan underpins summarization, fast
    convergence, traffic‑engineering flexibility and security filtering.
    For operators migrating from legacy MPLS or flat IPv6 (*brown‑field*
    environments), renumbering entire domains is rarely feasible.  The
@@ -233,7 +233,7 @@ keeping summaries on nibble boundaries.
 
    IPv6 gives ample room to carve hierarchical blocks, but the hierarchy
    is only useful if *each layer advertises exactly one summary into the
-   layer above*.  The guiding rule is **summarise at every 8‑bit field
+   layer above*.  The guiding rule is **summarize at every 8‑bit field
    boundary** so the mask aligns to a full byte.
 
 Topology Scope | Field ask | Prefix
@@ -266,10 +266,6 @@ Single node.   |  /48      | Node (NN)
    Internet route leak that re‑enters the network will be suppressed at
    Region borders because it can never be more specific than the /32s
    already authorised inside the domain.
-
-   **TE exception.**  Operators may temporarily leak a specific /39 into
-   the core for traffic‑engineering.  Automation MUST withdraw the
-   prefix after use to prevent FIB bloat.
 
    **Error containment.**  Because the summary masks are byte‑aligned, a
    single mis‑originated /48 cannot cross a Region boundary—either the
