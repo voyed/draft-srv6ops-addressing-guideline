@@ -5,13 +5,13 @@
 SRv6 Operations                                                N. Warnke
 Internet-Draft                                              M. Horneffer
 Intended status: Informational                          Deutsche Telekom
-Expires: 4 January 2026                                        N. Morris
+Expires: 5 January 2026                                        N. Morris
                                                          VerizonWireless
                                                                C. Hassan
                                                              Bell Canada
                                                                 D. Voyer
                                                            Cisco Systems
-                                                             3 July 2025
+                                                             4 July 2025
 
 
                        SRv6 Addressing Guidelines
@@ -26,7 +26,7 @@ Abstract
    Flex-Algo, Region-ID, Site-ID and Node-ID inside a fixed /48 locator
    while leaving space for Local and Global C-SIDs.  The aim is to
    accelerate brown-field SRv6 migrations by offering deterministic
-   field carving, summarisation rules and actionable operational
+   field carving, summarization rules and actionable operational
    guidance.
 
 About This Document
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 January 2026.
+   This Internet-Draft will expire on 5 January 2026.
 
 Copyright Notice
 
@@ -109,7 +109,7 @@ Table of Contents
    Region, Flex-Algo, Site-Set, Node—summaries fall naturally at region
    borders and troubleshooting becomes visual.
 
-   A well-designed SRv6 addressing plan underpins summarisation, fast
+   A well-designed SRv6 addressing plan underpins summarization, fast
    convergence, traffic-engineering flexibility and security filtering.
    For operators migrating from legacy MPLS or flat IPv6 (_brown-field_
    environments), renumbering entire domains is rarely feasible.  The
@@ -310,7 +310,7 @@ Table of Contents
 
    IPv6 gives ample room to carve hierarchical blocks, but the hierarchy
    is only useful if _each layer advertises exactly one summary into the
-   layer above_.  The guiding rule is *summarise at every 8-bit field
+   layer above_.  The guiding rule is *summarize at every 8-bit field
    boundary* so the mask aligns to a full byte.
 
                 +================+===========+===========+
@@ -349,10 +349,6 @@ Table of Contents
    Internet route leak that re-enters the network will be suppressed at
    Region borders because it can never be more specific than the /32s
    already authorised inside the domain.
-
-   *TE exception.* Operators may temporarily leak a specific /39 into
-   the core for traffic-engineering.  Automation MUST withdraw the
-   prefix after use to prevent FIB bloat.
 
    *Error containment.* Because the summary masks are byte-aligned, a
    single mis-originated /48 cannot cross a Region boundary—either the
